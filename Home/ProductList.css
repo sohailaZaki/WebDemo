@@ -1,0 +1,29 @@
+.product-list-wrapper {
+    overflow-x: auto; /* Use auto to show scrollbars only when necessary */
+    margin-bottom: 20px; /* Add some space at the bottom */
+    white-space: nowrap; /* Prevents wrapping of child elements */
+  }
+  
+  .product-list {
+    flex : none ; /* Displays child elements in a row */
+  }
+  
+  .product-item {
+    flex: 0 0 auto; /* Prevents items from stretching */
+    margin-right: 10px; /* Add space between items */
+  }
+  
+  .product-item:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+  }
+.container{
+    width: 900px;
+    display : flex; 
+}
+.container div{
+    width: 100%;
+    display: grid;
+    grid-template-columns : auto auto auto;
+    grid-gap: 20px;
+    padding: 10px;
+}  
