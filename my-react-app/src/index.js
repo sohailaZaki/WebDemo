@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ShopContextProvider from './context/shopContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ShopContextProvider>
