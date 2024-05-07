@@ -1,5 +1,4 @@
 // App.jsx
-
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarComponent from "./component/navbar/navbar";
@@ -15,13 +14,16 @@ import ScrollToTop from "./component/scroll/ScrollToTop";
 import CheckoutPage from "./pages/check";
 import Home from "./component/Home/Home";
 import MiniDrawer from "./pages/dashboard";
-import { Dashboard } from "@mui/icons-material";
+import Dash from "./pages/dashboardpages/dashboardHome/Dash";
+import User from "./pages/dashboardpages/user/User";
+import Contacts from "./pages/dashboardpages/contacts/Contacts";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavbarComponent /> 
-        {/* < MiniDrawer/> */}
+        {/* <NavbarComponent />  */}
+        < MiniDrawer/>
         <ScrollToTop />
         <Routes>
           <Route path="/home" element={<Home/>}/>
@@ -36,9 +38,8 @@ function App() {
           <Route path="/checkOut" element={<CheckoutPage />} />
           <Route path="/dashboard" element={<MiniDrawer />}>
               <Route index element={<Dash />} />
-              <Route path="user" element={<user />} /> 
-
-            <Route path="contacts" element={<Contacts />} />
+              <Route path="user" element={<User />} /> 
+              <Route path="contacts" element={<Contacts />} />
             {/* <Route path="invoices" element={<Invoices />} />
             <Route path="form" element={<Form />} />
             <Route path="calendar" element={<Calendar />} />

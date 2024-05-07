@@ -1,4 +1,3 @@
-import React from 'react'
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { rows } from "./data";
@@ -9,9 +8,9 @@ import {
   LockOpenOutlined,
   SecurityOutlined,
 } from "@mui/icons-material";
-import Header from '../../../components/dashboard/Header';
+import Header from "../../../component/dashboard/Header";
 import './user.css'
-const user = () => {
+const User = () => {
 
   // field ==> Reqird
   const columns = [
@@ -124,4 +123,4 @@ const user = () => {
   );
 
 };
-export default user;
+export default User;
