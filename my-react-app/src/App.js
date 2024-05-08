@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarComponent from "./component/navbar/navbar";
@@ -13,7 +12,8 @@ import Footer from "./component/footer/footer";
 import ScrollToTop from "./component/scroll/ScrollToTop";
 import CheckoutPage from "./pages/check";
 import Home from "./component/Home/Home";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 function App() {
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
        
         <ScrollToTop />
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/MakeUP" element={<Shopcategoery banner={Makeupbanner} categorey="MakeUP" />} />
           <Route path="/SkinCare" element={<Shopcategoery banner={skinbanner} categorey="SkinCare" />} />

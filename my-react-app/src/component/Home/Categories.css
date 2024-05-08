@@ -1,0 +1,50 @@
+.Shopbtn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid white;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #f8f9fa;
+    background-color: transparent;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Smooth transition for border */
+  }
+  .Shopbtn:hover {
+    /* Hover styles */
+    box-shadow: none; /* Optionally remove box-shadow on hover */
+    border-color: transparent; 
+  }
+  
+  /* Additional styles for text and background color */
+  .text-white {
+    color: #fff !important;
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+  
+.btn-light {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+  }
+  
+.text-white {
+    color: #fff !important;
+  }
+  
+.bg-transparent {
+    background-color: transparent !important;
+  }
+  
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+  
