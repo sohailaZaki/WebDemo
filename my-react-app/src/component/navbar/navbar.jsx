@@ -56,14 +56,14 @@ const NavbarComponent = () => {
         <div>
             <Navbar collapseOnSelect expand="lg"  variant="light">
                 <Container>
-                <Navbar.Brand as={Link} to="/home" style={{ marginRight: '10rem' }}> 
+                <Navbar.Brand as={Link} to="/" style={{ marginRight: '10rem' }}> 
                         {/* Replace mainLogo with the correct path to your logo image */}
                         <img src={logo} alt="logo" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/home">Home</Nav.Link> {/* Use Link instead of href */}
+                        <Nav.Link as={Link} to="/">Home</Nav.Link> {/* Use Link instead of href */}
                             
                             
                             <NavDropdown title="Shop" id="dropdownShop" >

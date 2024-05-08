@@ -1,28 +1,39 @@
-function Product(props) {
-    console.log(props);
-    const { product } = props;
-  
-    return (
-      <>
-      
-        <div className="card" style={{ width: "10px;" }}>
-         <img src={product.image_link} className="card-img-top" alt="..." style={{width: '130px' , margin: 'auto'}} />
-          <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text">{product.description}</p>
-          </div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">{product.brand}</li>
-            <li className="list-group-item">{product.product_type}</li>
-            <li  className="list-group-item">{product.price} {product.price_sign}</li>
-            <li  className="list-group-item">{product.price_sign}</li>
-          </ul>
-          <div className="card-body">
-            <button className="card-link">Card link</button>
-            <button className="card-link">Another link</button>
-          </div>
+import React from 'react';
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+} from "mdb-react-ui-kit";
+
+function Product({ product }) {
+  const handleMouseEnter = (e) => {
+    e.currentTarget.querySelector('img').classList.add('hovered');
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.querySelector('img').classList.remove('hovered');
+  };
+
+  return (
+    <MDBCard
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <MDBCardBody>
+        <MDBCardImage
+          src={product.image_link}
+          alt={product.name}
+          className="w-100"
+        />
+        <div className="card-content">
+          <h5 className="card-title mb-3">{product.name}</h5>
+          <p>{product.product_type}</p>
+          <p>{product.brand}</p>
+          <h6 className="mb-3">{product.price}$</h6>
         </div>
-      </>
-    );
-  }
-  export default Product;
+      </MDBCardBody>
+    </MDBCard>
+  );
+}
+
+export default Product;
