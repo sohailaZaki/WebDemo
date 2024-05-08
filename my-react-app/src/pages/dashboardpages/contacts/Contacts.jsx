@@ -1,9 +1,8 @@
-import React from 'react'
 import React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Box, Typography } from "@mui/material";
 import { columns, rows } from "./data";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 import'./contact.css'
 const Contacts = () =>{
   return (
