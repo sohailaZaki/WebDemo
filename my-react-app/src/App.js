@@ -13,46 +13,29 @@ import Footer from "./component/footer/footer";
 import ScrollToTop from "./component/scroll/ScrollToTop";
 import CheckoutPage from "./pages/check";
 import Home from "./component/Home/Home";
-import MiniDrawer from "./pages/dashboard";
-import Dash from "./pages/dashboardpages/dashboardHome/Dash";
-import User from "./pages/dashboardpages/user/User";
-import Contacts from "./pages/dashboardpages/contacts/Contacts";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavbarComponent />  */}
-        < MiniDrawer/>
+        <NavbarComponent /> 
+       
         <ScrollToTop />
         <Routes>
-          <Route path="/home" element={<Home/>}/>
+          <Route path="/home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/MakeUP" element={<Shopcategoery banner={Makeupbanner} categorey="MakeUP" />} />
           <Route path="/SkinCare" element={<Shopcategoery banner={skinbanner} categorey="SkinCare" />} />
           <Route path="/product" element={<Product />}>
-          <Route path=':productId' element={<Product />}/>
+            <Route path=':productId' element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/checkOut" element={<CheckoutPage />} />
-          <Route path="/dashboard" element={<MiniDrawer />}>
-              <Route index element={<Dash />} />
-              <Route path="user" element={<User />} /> 
-              <Route path="contacts" element={<Contacts />} />
-            {/* <Route path="invoices" element={<Invoices />} />
-            <Route path="form" element={<Form />} />
-            <Route path="calendar" element={<Calendar />} />
-            <Route path="faq" element={<FAQ />} />
-            <Route path="bar" element={<BarChart />} />
-            <Route path="pie" element={<PieChart />} />
-            <Route path="line" element={<LineChart />} />
-            <Route path="geography" element={<Geography />} />
-            <Route path="*" element={<NotFound />} />  */}
-          </Route>
+        
         </Routes>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

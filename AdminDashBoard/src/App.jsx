@@ -1,13 +1,17 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import * as React from "react";
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  useTheme,
+} from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
 
-
-import CssBaseline from '@mui/material/CssBaseline';
-
-import SideBar from '../component/dashboard/SideBar';
-import TopBar from '../component/dashboard/TopBar';
-
+import TopBar from "./components/TopBar";
+import SideBar from "./components/SideBar";
+import { Outlet } from "react-router-dom";
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -34,6 +38,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -41,7 +46,7 @@ export default function MiniDrawer() {
        <SideBar open={open} handleDrawerClose={handleDrawerClose}/>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-         SONDOS
+         <Outlet/>
       </Box>
     </Box>
   );
