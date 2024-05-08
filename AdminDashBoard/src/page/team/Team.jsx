@@ -72,10 +72,9 @@ const Team = () => {
               my: 1,
               backgroundColor:
                 access === "Admin"
-                  ? "#f48fb1"
-                  : access === "Merchant"
-                    ? "#880e4f"
-                    : "#f06292",
+                  ? "#880e4f"
+                 
+                    : "#f48fb1",
             }}
           >
             {access === "Admin" && (
@@ -85,9 +84,6 @@ const Team = () => {
               />
             )}
 
-            {access === "Merchant" && (
-              <SecurityOutlined sx={{ color: "#fff" }} fontSize="small" />
-            )}
 
             {access === "User" && (
               <LockOpenOutlined sx={{ color: "#fff" }} fontSize="small" />
@@ -104,7 +100,7 @@ const Team = () => {
   ];
 
   return (
-    <Box>
+    <Box >
       <Typography color="Black" sx={{
         fontSize: 50,
         fontStyle:'italic',
@@ -113,7 +109,7 @@ const Team = () => {
         fontSize: 20, my: 2
       }} >Managing the Users in The System </Typography>
 
-      <Box sx={{ height: " 89%", width: 1500 ,mx: "auto" }}>
+      <Box sx={{ height: " 89%", width: 1370 ,mx: "auto" }}>
         <DataGrid
           rows={rows}
           // @ts-ignore

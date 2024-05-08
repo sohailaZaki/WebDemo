@@ -31,7 +31,7 @@ export const rows = [
     email: "anyastark@gmail.com",
     age: 16,
     phone: "(921)425-6742",
-    access: "Merchant",
+    access: "Admin",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const rows = [
     email: "daenerystargaryen@gmail.com",
     age: 31,
     phone: "(421)445-1189",
-    access: "Merchant",
+    access: "User",
   },
   {
     id: 6,
