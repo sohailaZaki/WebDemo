@@ -1,10 +1,11 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Alert, Button, MenuItem, Snackbar, Stack, Typography, colors } from "@mui/material";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react'
+import "./data";
 
-
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { Alert, Box, Button, MenuItem, Snackbar, Stack, TextField, Typography } from "@mui/material";
+import { productColumns, productRows } from './data';
+import { grey } from '@mui/material/colors';
+import { useForm } from 'react-hook-form';
 
 const regEmail =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20,8 +21,7 @@ const data = [
  
 
 ];
-
-const Form = () => {
+const Products = () => {
   const {
     register, //enable validation and access to their values.
     handleSubmit, //handle form submission
@@ -51,13 +51,44 @@ const Form = () => {
 
   return (
     <Box>
+    <Typography color="Black" sx={{
+      fontSize: 50,
+      fontStyle:'italic',
+    }}>MANAGE PRODUCTS</Typography>
+    <Box
+    sx={{ height: "89%", width: 1370, mx: "auto" }}>
+       
+     
+      <DataGrid
+       
+       columns={productColumns}
+       rows={productRows}
+      
+       getRowClassName={(params) =>
+         `${params.row.category.toLowerCase().replace(' ', '-')}-row`
+       }
+       sx={{
+         [`& .${'makeup-row'}`]: {
+           backgroundColor: '#FFCCCC',
+         },
+         [`& .${'skincare-row'}`]: {
+           backgroundColor: '#e57373',
+         },
+         [`& .${'perfume-row'}`]: {
+           backgroundColor: '#ef9a9a',
+         },
+         height: "89%", width: 1470, mx: "auto" 
+       }}
+      />
+    </Box>
+    <Box>
       <Typography color="Black" sx={{
         fontSize: 50,
         fontStyle: 'italic',
-      }}>ADD ADMIN</Typography>
+      }}>ADD PRODUCT</Typography>
       <Typography color="bLack" sx={{
         fontSize: 20, my: 2
-      }} >Create a New Admin Profile</Typography>
+      }} >Create a New Product</Typography>
 
       <Box
         onSubmit={handleSubmit(onSubmit)}
@@ -80,9 +111,9 @@ const Form = () => {
                 ? "This field is required & min 3 character"
                 : null
             }
-            {...register("firstName", { required: true, minLength: 3 })}
+            {...register("name", { required: true, minLength: 3 })}
             sx={{ flex: 1 }}
-            label="First Name"
+            label="Name of Product"
             variant="filled"
           />
 
@@ -93,9 +124,9 @@ const Form = () => {
                 ? "This field is required & min 3 character"
                 : null
             }
-            {...register("lastName", { required: true, minLength: 3 })}
+            {...register("category", { required: true, minLength: 3 })}
             sx={{ flex: 1 }}
-            label="Last Name"
+            label="Category"
             variant="filled"
           />
         </Stack>
@@ -177,9 +208,9 @@ const Form = () => {
 
     </Box>
 
-
-
+    </Box>
   );
 };
+export default Products;
 
-export default Form;
+

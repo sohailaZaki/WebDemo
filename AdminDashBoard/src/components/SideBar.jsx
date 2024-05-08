@@ -14,7 +14,8 @@ import MuiDrawer from '@mui/material/Drawer';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 import { BarChartOutlined, CalendarMonthOutlined, CalendarTodayOutlined, ContactsOutlined, HelpOutlineOutlined, HomeOutlined, MapOutlined, PeopleAltOutlined, PeopleOutlined, PersonOutline, PieChartOutline, PieChartOutlineOutlined, ReceiptLongOutlined, TimelineOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -76,7 +77,7 @@ const Array1 = [
    
   },
   {
-    text: "Invoices Balances",
+    text: "Orders",
     icon: <ReceiptLongOutlined />,
     path: "/invoices",
   },
@@ -90,6 +91,9 @@ const Array3 = [
   { text: "Bar Chart", icon: <BarChartOutlined />, path: "/barChart" },
   { text: "Pie Chart", icon: <PieChartOutlineOutlined />, path: "/pieChart" },
   { text: "Line Chart", icon: <TimelineOutlined />, path: "/lineChart" },
+  {text:"Products" ,icon:<ShoppingCartOutlinedIcon/>,path:"/products"},
+  {text:"Category" ,icon:<CategoryOutlinedIcon/>,path:"/category"}
+
 ];
 const SiderBar=({open,handleDrawerClose})=>{
   const location =useLocation();

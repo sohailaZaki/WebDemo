@@ -86,8 +86,8 @@ const Row2 = () => {
               <Typography
                 borderRadius={1.4}
                 p={1}
-                bgcolor={theme.palette.secondary.main}
-                color={theme.palette.getContrastText(theme.palette.error.main)}
+                bgcolor="#f48fb1"
+                color="white"
                 variant="body2"
               >
                 ${item.cost}

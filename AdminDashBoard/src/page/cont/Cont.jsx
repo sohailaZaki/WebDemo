@@ -13,9 +13,9 @@ const Cont = () => {
       }}>CONTACTS</Typography>
       <Typography color="bLack" sx={{
         fontSize: 20, my: 2
-      }} >List of Contacts for Future Reference</Typography>
+      }} >List of Contacts of Users</Typography>
 
-      <Box sx={{ height: "89%", width: 1500, mx: "auto" }}>
+      <Box sx={{ height: "89%", width: 1370, mx: "auto" }}>
         <DataGrid
           slots={{
             toolbar: GridToolbar,
