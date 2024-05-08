@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography, styled, useTheme } from '@mui/material'
+import { Avatar, Box, Toolbar, Tooltip, Typography, styled, useTheme } from '@mui/material'
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -11,7 +11,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import List from '@mui/material/List';
 import MuiDrawer from '@mui/material/Drawer';
-
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 import { BarChartOutlined, CalendarMonthOutlined, CalendarTodayOutlined, ContactsOutlined, HelpOutlineOutlined, HomeOutlined, MapOutlined, PeopleAltOutlined, PeopleOutlined, PersonOutline, PieChartOutline, PieChartOutlineOutlined, ReceiptLongOutlined, TimelineOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -67,12 +67,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 const Array1 = [
-  { text: "Dashboard", icon: <HomeOutlined />, path: "/" },
-  { text: "Users", icon: <PeopleOutlined />, path: "/pages/dashboardpages/user" },
+  { text: "Dashboard", icon: <HomeOutlined />, path: "/dashboard" },
+  { text: "Users", icon: <PeopleOutlined />, path: "/team" },
   {
     text: "Contacts Information",
     icon: <ContactsOutlined />,
-    path: "/contacts",
+    path: "/cont"
+   
   },
   {
     text: "Invoices Balances",
@@ -81,19 +82,14 @@ const Array1 = [
   },
 ];
 const Array2 = [
-  { text: "Profile Form", icon: <PersonOutline />, path: "/form" },
-  { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/page/calendar" },
-  {
-    text: "FAQ Page",
-    icon: <HelpOutlineOutlined />,
-    path: "/faq",
-  },
+  { text: "Add User", icon: <PersonAddAlt1OutlinedIcon />, path: "/form" },
+  { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/calendar" },
+ 
 ];
 const Array3 = [
-  { text: "Bar Chart", icon: <BarChartOutlined />, path: "/page/bar" },
-  { text: "Pie Chart", icon: <PieChartOutlineOutlined />, path: "/pie" },
-  { text: "Line Chart", icon: <TimelineOutlined />, path: "/line" },
-  { text: "Geography Chart", icon: <MapOutlined />, path: "/geography" },
+  { text: "Bar Chart", icon: <BarChartOutlined />, path: "/barChart" },
+  { text: "Pie Chart", icon: <PieChartOutlineOutlined />, path: "/pieChart" },
+  { text: "Line Chart", icon: <TimelineOutlined />, path: "/lineChart" },
 ];
 const SiderBar=({open,handleDrawerClose})=>{
   const location =useLocation();
@@ -140,10 +136,10 @@ const SiderBar=({open,handleDrawerClose})=>{
 
       <Divider />
 
-      <List sx={{ backgroundColor: open ? "White" : "#ffebee", }}>
+      <List sx={{ backgroundColor: open ? "White" : "#ffebee" }}>
         {Array1.map((item) => (
           <ListItem key={item.path} disablePadding sx={{ display: 'block' }}>
-            
+            <Tooltip title={open ?null: item.text} placement='left'>
             <ListItemButton
                onClick={()=>{
                 navigate(item.path)
@@ -173,6 +169,8 @@ const SiderBar=({open,handleDrawerClose})=>{
 
                 }} />
             </ListItemButton>
+            </Tooltip>
+        
           </ListItem>
         ))}
       </List>
@@ -181,8 +179,8 @@ const SiderBar=({open,handleDrawerClose})=>{
       <List sx={{ backgroundColor: open ? "White" : "#ffebee", }}>
         {Array2.map((item) => (
           <ListItem key={item.path} disablePadding sx={{ display: 'block' }}>
-            
-            <ListItemButton
+                 <Tooltip title={open ?null: item.text} placement='left'>
+                 <ListItemButton
                onClick={()=>{
                 navigate(item.path)
              }}
@@ -211,16 +209,20 @@ const SiderBar=({open,handleDrawerClose})=>{
 
                 }} />
             </ListItemButton>
+            </Tooltip>
+           
+           
+          
           </ListItem>
         ))}
       </List>
 
     
-      <List sx={{ backgroundColor: open ? "White" : "#ffebee", }}>
+      <List sx={{ backgroundColor: open ? "White" : "#ffebee", height:1000}}>
         {Array3.map((item) => (
           <ListItem key={item.path} disablePadding sx={{ display: 'block' }}>
-            
-            <ListItemButton
+             <Tooltip title={open ?null: item.text} placement='left'>
+             <ListItemButton
                onClick={()=>{
                 navigate(item.path)
              }}
@@ -249,6 +251,8 @@ const SiderBar=({open,handleDrawerClose})=>{
 
                 }} />
             </ListItemButton>
+              </Tooltip>
+           
           </ListItem>
         ))}
       </List>

@@ -8,10 +8,10 @@ import {
   LockOpenOutlined,
   SecurityOutlined,
 } from "@mui/icons-material";
-import Header from "../../../component/dashboard/Header";
-import './user.css'
-const User = () => {
 
+import "./Team.css"
+const Team = () => {
+  
   // field ==> Reqird
   const columns = [
     {
@@ -106,13 +106,14 @@ const User = () => {
   return (
     <Box>
       <Typography color="Black" sx={{
-        fontSize: 50
+        fontSize: 50,
+        fontStyle:'italic',
       }}>Users</Typography>
       <Typography color="bLack" sx={{
         fontSize: 20, my: 2
       }} >Managing the Users in The System </Typography>
 
-      <Box sx={{ height: " 89%", width: 1500 ,mx: "auto"  }}>
+      <Box sx={{ height: " 89%", width: 1500 ,mx: "auto" }}>
         <DataGrid
           rows={rows}
           // @ts-ignore
@@ -121,6 +122,7 @@ const User = () => {
       </Box>
     </Box>
   );
-
+    
 };
-export default User;
+
+export default Team;

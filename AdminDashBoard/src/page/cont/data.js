@@ -1,4 +1,4 @@
-import'./contact.css'
+import'./cont.css'
 export const columns = [
     { field: "id",
      headerName: "ID", 

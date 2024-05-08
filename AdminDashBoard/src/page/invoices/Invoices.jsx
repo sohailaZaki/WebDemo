@@ -1,26 +1,25 @@
 import React from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+
 import { Box, Typography } from "@mui/material";
 import { columns, rows } from "./data";
-// import Header from "../../components/Header";
-import'./contact.css'
-const Contacts = () =>{
+
+
+const Invoices = () => {
   return (
     <Box>
 
     <Typography color="Black" sx={{
-      fontSize: 50
-    }}>CONTACTS</Typography>
+      fontSize: 50,
+      fontStyle:'italic',
+    }}>INVOICES</Typography>
     <Typography color="bLack" sx={{
       fontSize: 20, my: 2
-    }} >List of Contacts for Future Reference</Typography>
+    }} >List of Invoices for Future Reference</Typography>
 
     <Box sx={{ height: "89%", width: 1500, mx: "auto" }}>
       <DataGrid
-        slots={{
-          toolbar: GridToolbar,
-          
-        }}
+        checkboxSelection
         rows={rows}
         // @ts-ignore
         columns={columns}
@@ -28,6 +27,11 @@ const Contacts = () =>{
       />
     </Box>
   </Box>
-  )
-}
-export default Contacts;
+  
+  
+
+
+  );
+};
+
+export default Invoices;
