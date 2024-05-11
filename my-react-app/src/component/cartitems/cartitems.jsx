@@ -6,18 +6,23 @@ import carticon from '../../images/cart_cross_icon.png';
 import './cartitems.css';
 
 const Cartitems = () => {
-    const { totalcart, cartitems, removefromcart, allproducts } = useContext(ShopContext);
+    const { totalcart, cartitems, removefromcart, all_product } = useContext(ShopContext);
 
     // Calculate subtotal and total
     const subtotal = Object.keys(cartitems).reduce((acc, productId) => {
-        const product = allproducts.find(p => p.id === parseInt(productId));
-        return acc + (product.price * cartitems[productId]);
+        const product = all_product.find(p => {
+            return p.id === parseInt(productId);
+        });
+        return acc + (product ? product.price * cartitems[productId] : 0);
     }, 0);
+    
 
     const total = subtotal;
 
     // Check if cart is empty
-    const isCartEmpty = Object.values(cartitems).every(quantity => quantity === 0);
+    const isCartEmpty = totalcart() === 0;
+
+
 
     return (
         <div className="cart-items container">
@@ -51,8 +56,8 @@ const Cartitems = () => {
                         <div className="col">Remove</div>
                     </div>
                     <hr/>
-                    {allproducts.map((product) => {
-                        if (cartitems[product.id] !== 0) {
+                    {all_product.map((product) => {
+                        if (cartitems[product.id] > 0) {
                             
                             return (
                                 <div key={product.id} className="format row">
@@ -71,10 +76,13 @@ const Cartitems = () => {
                                         <img src={carticon} className="remove-cart-icon" onClick={() => removefromcart(product.id)} alt="" />
                                     </div>
                                 </div>
+                                
                             );
+                           
                         }
                         return null;
                     })}
+                    
                     <div className="down row mt-5">
                         <div className="total col-md-6">
                             <h1>Cart Total</h1>
@@ -93,6 +101,7 @@ const Cartitems = () => {
                                 <h3>${total}</h3>
                             </div>
                             <Link to='/checkOut' className="btn btn-primary btn-lg w-100 mt-4 btn-transparent">Checkout</Link>
+
                         </div>
                     </div>
                 </div>
@@ -101,5 +110,4 @@ const Cartitems = () => {
 
     );
 }
-
 export default Cartitems;

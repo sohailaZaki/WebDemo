@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Cat1 from '../../images/cat-large-item1.jpg'
 import Cat2 from '../../images/cat-large-item2.jpg'
 import Cat3 from '../../images/cat-large-item3.jpg'
@@ -14,7 +15,7 @@ function Categories(){
             <div class="category-content position-absolute p-md-5 ps-5 p-3 text-uppercase  ">
               <h2 class="section-title text-white display-3">Skin Care</h2>
               <div class="btn-left btn-swiper">
-                <a href="shop.html" class="Shopbtn ">Shop Now</a>
+                <Link to="/SkinCare" class="Shopbtn ">Shop Now</Link>
               </div>
             </div>
           </div>
@@ -28,7 +29,7 @@ function Categories(){
               <div class="category-content position-absolute p-md-5 ps-5 p-3 text-uppercase">
                 <h4 class="section-title text-white display-6">Make-Up Products</h4>
                 <div class="btn-left btn-swiper mt-3">
-                  <a href="shop.html" class="Shopbtn ">Shop Now</a>
+                  <Link to="/MakeUP" class="Shopbtn ">Shop Now</Link>
                 </div>
               </div>
             </div>
@@ -41,7 +42,7 @@ function Categories(){
               <div class="category-content position-absolute p-md-5 ps-5 p-3 text-uppercase">
                 <h4 class="section-title text-white display-6">Beauty Products</h4>
                 <div class="btn-left btn-swiper mt-3">
-                  <a href="shop.html" class="Shopbtn ">Shop Now</a>
+                  <Link to="/shop" class="Shopbtn ">Shop Now</Link>
                 </div>
               </div>
             </div>

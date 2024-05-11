@@ -3,24 +3,27 @@
 .productdisplay {
     margin: 0 auto;
     max-width: 1200px;
+    padding-bottom: 100px;
 }
 
 .productdisplay-imge-main {
-    margin-bottom: 0;
+    margin-bottom: 5px; /* Add some margin between the main image and the small images */
+    
 }
 
 .productdisplay-imge {
     display: flex;
+    justify-content: space-between; /* Align the small images evenly */
     flex-wrap: wrap;
     margin-left: 0px; /* Add negative margin to offset the space between images and the left edge */
 }
 
 .small-image {
-    width: 85px; /* Adjust the width of small images */
+    width: calc(25% - 2px); /* Set the width of small images dynamically */
     max-width: 100%; /* Ensure the images don't exceed their container */
     margin-bottom: 10px; /* Add some space between small images */
-    margin-left: 0px; /* Add margin to separate images */
 }
+
 
 .productdisplay-right {
     margin-left: 30px;

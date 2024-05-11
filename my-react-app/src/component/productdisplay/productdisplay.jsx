@@ -9,7 +9,6 @@ const Productdisplay = (props) => {
     const { product } = props;
     const { addtocart } = useContext(ShopContext);
     const [rating, setRating] = useState(0); // State to store the selected rating
-    const [selectedColor, setSelectedColor] = useState(product.colours[0]); // State to store the selected color
 
     const handleRatingChange = (newRating) => {
         setRating(newRating); // Update the selected rating
@@ -19,14 +18,11 @@ const Productdisplay = (props) => {
         addtocart(product.id); // Add the product to the shopping cart
     };
 
-    const handleColorChange = (color) => {
-        setSelectedColor(color); // Update the selected color
-    };
 
     return (
         <div className="productdisplay">
             <div style={{ paddingTop: '80px', paddingBottom:'60px', color:'black' }}>
-                Home / Shop / {product.categorey} / {product.name}
+                Home / Shop / {product.category} / {product.name}
                 </div>
 
             <div className="row">
@@ -58,20 +54,8 @@ const Productdisplay = (props) => {
                         <div className="productdisplay-price">
                             <h1 className="productdisplay-price-name">${product.price}</h1>
                         </div>
-                        <h1 className="productdisplay-info-discription" style={{ color: '#888', fontSize: '20px' }}>{product.discription}</h1>
 
-                        <div className="productdisplay-colors">
-                            {product.colours.map((color, index) => (
-                                <div
-                                    key={index}
-                                    className={`productdisplay-color-circle ${selectedColor === color ? 'active' : ''}`}
-                                    style={{ backgroundColor: color }}
-                                    onClick={() => handleColorChange(color)}
-                                ></div>
-                            ))}
-                            
-                        </div>
-                        <span className="productdisplay-selected-color">Colour: {selectedColor}</span>
+                        
                         <button onClick={handleAddToCart} className="btn btn-primary btn-lg w-100 mt-4 btn-transparent">Add To Cart</button>
                     </div>
                 </div>

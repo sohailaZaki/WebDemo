@@ -9,9 +9,11 @@
     height: 100%; /* Set the card height to fill available space */
 }
 
-.product-item-img-top {
-    height: 250px; /* Set a fixed height for the image */
-    object-fit: cover; /* Ensure the image covers the entire container */
+.product-image {
+   
+    width: auto; /* Allow the width to adjust to maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the container */
+    border: 1px solid #fff; /* Add a white border to all images */
 }
 
 .product-item:hover {
@@ -24,8 +26,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     transition: background-size 1s ease-in-out;
-  }
-  .product-item {
+}
+
+.product-item {
     position: relative;
     /* Add other styles as needed */
 }

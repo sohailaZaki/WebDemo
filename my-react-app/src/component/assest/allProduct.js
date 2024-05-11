@@ -9,11 +9,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:50,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
 },
 {
     id:2,
@@ -22,11 +18,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:140,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
 },
        
         
@@ -37,11 +29,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:150,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]  
 },
 {
     id:4,
@@ -50,11 +38,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:200,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
   },
 {
     id:5,
@@ -63,11 +47,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:90,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
     },
 {
     id:6,
@@ -76,11 +56,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:10,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
     },
 {
     id:7,
@@ -89,11 +65,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:20,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
     },
 {
     id:8,
@@ -102,11 +74,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:300,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
     },
 {
     id:9,
@@ -115,11 +83,7 @@ let all_product=[
     discription:"lipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipsticklipstick",
     image:i1,
     price:500,
-    colours:[
-        'black',
-        'red',
-        'yellow',
-    ]
+    colours:["black", "red", "yellow"]
     },
                 
 ]

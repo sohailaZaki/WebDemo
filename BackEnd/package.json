@@ -1,0 +1,86 @@
+{
+  "name": "my-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/roboto": "^5.0.13",
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fullcalendar/daygrid": "^6.1.11",
+    "@fullcalendar/interaction": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
+    "@mobiscroll/react-lite": "^4.10.9",
+    "@mui/icons-material": "^5.15.16",
+    "@mui/material": "^5.15.16",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
+    "@mui/x-data-grid": "^7.3.2",
+    "@nivo/bar": "^0.86.0",
+    "@nivo/geo": "^0.86.0",
+    "@nivo/line": "^0.86.0",
+    "@nivo/pie": "^0.86.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mdb-react-ui-kit": "^8.0.0",
+    "mobiscroll": "^3.0.0-beta6",
+    "mongoose": "^8.3.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nreact": "^1.0.0",
+    "react": "^18.3.0",
+    "react-bootstrap": "^2.10.2",
+    "react-bootstrap-star-rating": "^3.5.5-alpha.0.3",
+    "react-dom": "^18.3.0",
+    "react-hook-form": "^7.51.4",
+    "react-icons": "^5.2.1",
+    "react-loading": "^2.0.3",
+    "react-multi-carousel": "^2.8.5",
+    "react-router-bootstrap": "^0.26.2",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "react-star-ratings": "^2.3.0",
+    "slugify": "^1.6.6",
+    "smooth-scrollbar-react": "^2.4.1",
+    "styled-components": "^6.1.9",
+    "swiper": "^11.1.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "node src/BackEnd/server.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0"
+  }
+}

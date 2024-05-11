@@ -381,3 +381,19 @@ a {
   .footer-menu {
     text-align: left;
   }
+  .search-result {
+    cursor: pointer;
+    max-height: 200px; /* ارتفاع ثابت */
+    overflow-y: auto; /* التمرير العمودي */
+}
+
+.search-result ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.search-result li {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding: 10px;
+}

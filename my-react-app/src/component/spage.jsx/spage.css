@@ -1,0 +1,9 @@
+.results {
+    max-height: 50px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if necessary */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add border radius for styling */
+    margin-top: 10px; /* Adjust margin */
+    padding: 5px; /* Add padding */
+    
+}

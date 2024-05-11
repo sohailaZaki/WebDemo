@@ -1,0 +1,24 @@
+.searchtop{
+    width: 100%;
+}
+.results{
+    width: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    max-height: 150px; /* ارتفاع ثابت */
+    overflow-y: auto; /* التمرير العمودي */
+    list-style-type: none;
+    padding: 0;
+    
+}
+.results div{
+    width: 100%;
+    /* padding: 10px 25px; */
+    background-color: white;
+
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding: 10px;
+
+}
+
