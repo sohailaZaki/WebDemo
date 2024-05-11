@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.Login {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  
+}
+.Login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('D:\grade 3\Semster 2\Web Engineering\project\Git Project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg');
+  background-size: cover; /* Ensures the background image covers the entire viewport */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  
+  
+}
+.REG{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  
+}
+.REG {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('D:\grade 3\Semster 2\Web Engineering\project\Git Project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+  background-size: cover; /* Ensures the background image covers the entire viewport */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the background image from repeating */
+  
+  
+}
+/* form container */
+.form-container {
+  width: 1000px;
+ 
+}
+.title, .slogan  {
+  text-align: center;
+}
+.Loginbtn .signUpbtn{
+  width: 100%;
+}
+.auth image{
+  width: 100%;
+}
+.powder-pink {
+  background-color: #ffb6c1;
+  border-color: #ffb6c1;
+  color: #fff;
+}
+
+.powder-pink:hover,
+.powder-pink:focus {
+  background-color: #ff9aa2;
+  border-color: #ff9aa2;
+  color: #fff;
+}
+.alert{
+  margin-bottom: 1.5rem;
+}
+.profile-card{
+  width: 500px;
+}
+.avatar{
+  margin-bottom:1.5rem; 
+}
+.username{
+  text-transform: capitalize;
+}
+.profile-btn{
+  margin-top:1.3rem; 
+  width: 100%;
+}

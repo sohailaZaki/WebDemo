@@ -3,21 +3,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom"; 
 import Productdisplay from "../component/productdisplay/productdisplay";
 import { ShopContext } from "../context/shopContext";
-import Related from "../component/related/related";
+import Review from "../component/reviews/reviews";
+import Comment from "../component/comments/comments"
+import NavbarComponent from "../component/navbar/navbar";
+import Footer from "../component/footer/footer";
 
 const Product = () => {
     const { productId } = useParams(); // Make sure you're correctly extracting the productId
 
-    const { allproducts } = useContext(ShopContext);
+    const { all_product } = useContext(ShopContext);
 
-    const product = allproducts.find((e) => e.id === Number(productId));
+    const product = all_product.find((e) => e.id === Number(productId));
 
     return (
         <div>
+            <NavbarComponent /> 
 
             <Productdisplay product={product} />
-
-            <Related/>
+            <Comment/>
+            
+           <Footer />
             
         </div>
     );

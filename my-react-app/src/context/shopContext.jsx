@@ -1,58 +1,84 @@
-import React, { useState, useEffect } from "react";
-import { createContext } from "react";
-import all_product from "../component/assest/allProduct";
+import React, { useState, useEffect, createContext } from "react";
 
 export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
     let cart = {};
-    all_product.forEach((product) => {
-        cart[product.id] = 0;
-    });
+    for (let i = 0; i < 100000 + 1; i++) {
+        cart[i] = 0;
+    }
     return cart;
 };
 
 const ShopContextProvider = (props) => {
     const [cartitems, setCartItems] = useState(getDefaultCart());
-    const [searchQuery, setSearchQuery] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-
-    // Load cart items from localStorage on component mount
+    const [all_product, setAllProducts] = useState([]);
     useEffect(() => {
-        const storedCart = JSON.parse(localStorage.getItem("cart"));
-        if (storedCart) {
-            setCartItems(storedCart);
-        }
-    }, []);
+        fetch("http://localhost:4000/allproduct")
+            .then((response) => response.json())
+            .then((data) => {
+                setAllProducts(data);
+            });
+            
+    }, [all_product]);
+
     const clearCart = () => {
         setCartItems(getDefaultCart());
-        localStorage.removeItem("cart");
     };
-    const updateCartItems = (updatedCart) => {
-        setCartItems(updatedCart);
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
-    };
+
 
     const addtocart = (productId) => {
-        updateCartItems({
-            ...cartitems,
-            [productId]: cartitems[productId] + 1,
-        });
+        // إضافة المنتج إلى العربة بقيمة 1
+        setCartItems((prev) => ({ ...prev, [productId]: (prev[productId] || 0) + 1 }));
+    
+        if (localStorage.getItem('auth-token')) {
+            fetch("http://localhost:4000/addtocart", {
+                method: 'POST',
+                headers: {
+                    Accept: "application/form-data",
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    "Connect-type": "application/json",
+                },
+                body: JSON.stringify({ itemid: productId }),
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+            
+        }
     };
+    
 
     const removefromcart = (productId) => {
-        updateCartItems({
-            ...cartitems,
-            [productId]: Math.max(0, cartitems[productId] - 1),
+        // حذف المنتج من العربة
+        setCartItems((prevCartItems) => {
+            const updatedCartItems = { ...prevCartItems };
+            if (updatedCartItems[productId] > 0) {
+                updatedCartItems[productId] -= 1;
+            }
+            return updatedCartItems;
         });
+    
+        // إذا كنت تستخدم التوكن للتوثيق، قم بإرسال طلب لإزالة المنتج من السلة في قاعدة البيانات
+        if (localStorage.getItem('auth-token')) {
+            fetch("http://localhost:4000/removefromcart", {
+                method: 'POST',
+                headers: {
+                    Accept: "application/form-data",
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    "Connect-type": "application/json",
+                },
+                body: JSON.stringify({ itemid: productId }),
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data));
+        }
     };
-
-    // Calculate total number of items in the cart
+    
     const gettotalCartItems = () => {
         let totalitems = 0;
-        for (const item of Object.values(cartitems)) {
-            if (item > 0) {
-                totalitems += item;
+        for (const item in cartitems) {
+            if (cartitems[item]> 0) {
+                totalitems += cartitems[item];
             }
         }
         return totalitems;
@@ -60,40 +86,24 @@ const ShopContextProvider = (props) => {
 
     const totalcart = () => {
         let total = 0;
-        for (const item of Object.entries(cartitems)) {
-            const [productId, quantity] = item;
-            if (quantity > 0) {
-                const product = all_product.find((p) => p.id === parseInt(productId));
-                if (product) {
-                    total += product.price * quantity;
+        for (const item in cartitems) {
+            if (cartitems[item] > 0) {
+                let iteminfo = all_product.find((product) => product.id === Number(item));
+                if (iteminfo) {
+                    total += iteminfo.price * cartitems[item];
                 }
             }
         }
         return total;
     };
 
-    // Filter products based on search query
-    useEffect(() => {
-        if (searchQuery.trim() !== "") {
-            const results = all_product.filter(
-                (product) =>
-                    product.discription.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-            setSearchResults(results);
-        } else {
-            setSearchResults([]);
-        }
-    }, [searchQuery]);
-
     const contextValue = {
-        allproducts: all_product,
+        all_product,
         cartitems,
         totalcart,
         addtocart,
         removefromcart,
         gettotalCartItems,
-        setSearchQuery,
-        searchResults,
         clearCart,
     };
 
@@ -102,6 +112,6 @@ const ShopContextProvider = (props) => {
             {props.children}
         </ShopContext.Provider>
     );
-};
+ }
 
 export default ShopContextProvider;

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/shopContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import NavbarComponent from "../component/navbar/navbar";
+import Footer from "../component/footer/footer";
 
 const CheckoutPage = () => {
+    const navigate = useNavigate();
+    const { totalcart, removefromcart, all_product } = useContext(ShopContext);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -127,6 +130,7 @@ const CheckoutPage = () => {
 
     return (
         <div className="container">
+            <NavbarComponent /> 
             <div style={{ paddingBottom: '30px', paddingTop: '80px' , color:'black'}}>
                 <h1 style={{ fontSize: '5rem' }}>Checkout</h1>
                 
@@ -223,51 +227,8 @@ const CheckoutPage = () => {
                     </select>
                     {formErrors.location && <div className="text-danger">{formErrors.location}</div>}
                 </div>
-                {/* Use shipping address as billing address */}
-                <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="useShippingAsBilling" checked={useShippingAsBilling} onChange={handleUseShippingAsBillingChange} />
-                    <label className="form-check-label" htmlFor="useShippingAsBilling">Use shipping address as billing address</label>
-                </div>
-                {/* Payment method */}
-                <div className="mb-3">
-                    <h3>Choose a payment method</h3>
-                    
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked={paymentMethod === "creditCard"} onChange={() => handlePaymentMethodChange("creditCard")} />
-                        <label className="form-check-label" htmlFor="creditCard">Credit Card</label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cashOnDelivery" checked={paymentMethod === "cashOnDelivery"} onChange={() => handlePaymentMethodChange("cashOnDelivery")} />
-                        <label className="form-check-label" htmlFor="cashOnDelivery">Cash on Delivery (COD)</label>
-                    </div>
-                    {/* Credit card details */}
-                    {paymentMethod === "creditCard" && (
-                        <div>
-                            <div className="mb-3">
-                                <label htmlFor="cardNumber" className="form-label">Card Number</label>
-                                <input type="text" className="form-control" id="cardNumber" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} />
-                                {formErrors.cardNumber && <div className="text-danger">{formErrors.cardNumber}</div>}
-                            </div>
-                            <div className="mb-3">
-                        <label htmlFor="expiryDate" className="form-label">Expiry Date (MM/YYYY)</label>
-                        <input type="text" className="form-control" id="expiryDate" value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
-                        {formErrors.expiryDate && <div className="text-danger">{formErrors.expiryDate}</div>}
-                    </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="securityCode" className="form-label">Security Code</label>
-                                <input type="text" className="form-control" id="securityCode" value={securityCode} onChange={(e) => setSecurityCode(e.target.value)} />
-                                {formErrors.securityCode && <div className="text-danger">{formErrors.securityCode}</div>}
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="cardHolderName" className="form-label">Card Holder Name</label>
-                                <input type="text" className="form-control" id="cardHolderName" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} />
-                                {formErrors.cardHolderName && <div className="text-danger">{formErrors.cardHolderName}</div>}
-                            </div>
-                        </div>
-                    )}
-
-                </div>
+ 
+                
                 
                 <div style={{ marginTop: '20px' }}>
                     <button type="button" className="btn btn-primary me-2" onClick={handlePlaceOrder}>Place Order</button>
@@ -281,6 +242,28 @@ const CheckoutPage = () => {
             </form>
             </div>
             )}
+            <div className="down row mt-5">
+                        <div className="total col-md-6">
+                            <h1>Cart Total</h1>
+                            <div className="cart-items">
+                                <p>SubTotal</p>
+                                <p style={{ color:'black' }}>{totalcart}</p>
+                            </div>
+                            <hr/>
+                            <div className="cart-items">
+                                <p>Shipping Fee</p>
+                                <p style={{ color:'black' }}>Free</p>
+                            </div>
+                            <hr/>
+                            <div className="cart-items">
+                                <h3>Total</h3>
+                                <h3>{totalcart}</h3>
+                            </div>
+                            <Link onClick={()=>navigate('/checkOut')} className="btn btn-primary btn-lg w-100 mt-4 btn-transparent">Checkout</Link>
+                        </div>
+            </div>
+            
+      <Footer />
         </div>
     );
 }

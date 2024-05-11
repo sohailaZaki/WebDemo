@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/category.css';
 import { useContext } from "react";
-import { ShopContext } from "../context/shopContext";
+import { ShopContext } from "../context/shopContext"
 import Item from "../component/item/item";
-import all_product from "../component/assest/allProduct";
 import Product from "./product";
+import NavbarComponent from "../component/navbar/navbar";
+import Footer from "../component/footer/footer";
 
 const Category = (props) => {
-    const { allproducts } = useContext(ShopContext);
+    const { all_product } = useContext(ShopContext);
+    console.log(" shop all_product:", all_product); 
+
     const [selectedPriceRange, setSelectedPriceRange] = useState("All");
     const [sortOption, setSortOption] = useState(null);
+    const [visibleProducts, setVisibleProducts] = useState(16); // عدد المنتجات المرئية
 
     const filterProductsByPriceRange = (minPrice, maxPrice) => {
-        return allproducts.filter(item => {
+        return all_product.filter(item => {
             const price = parseFloat(item.price);
             return price >= minPrice && price <= maxPrice;
         });
@@ -39,31 +43,34 @@ const Category = (props) => {
         { label: "$200 - $500", minPrice: 200, maxPrice: 500 }
     ];
 
-    let filteredProducts;
-    if (selectedPriceRange === "All") {
-        filteredProducts = allproducts.filter(item => item.category === props.category);
-    } else {
-        const [minPrice, maxPrice] = selectedPriceRange.split(" - ").map(parseFloat);
-        filteredProducts = filterProductsByPriceRange(minPrice, maxPrice).filter(item => item.category === props.category);
+    let filteredProducts = [];
+
+    if (all_product) { // Check if all_product is defined
+        if (selectedPriceRange === "All") {
+            filteredProducts = all_product.filter(item => item.category === props.category);
+        } else {
+            const [minPrice, maxPrice] = selectedPriceRange.split(" - ").map(parseFloat);
+            filteredProducts = filterProductsByPriceRange(minPrice, maxPrice).filter(item => item.category === props.category);
+        }
+
+        if (sortOption === 'lowToHigh') {
+            filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        } else if (sortOption === 'highToLow') {
+            filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        }
     }
 
-    if (sortOption === 'lowToHigh') {
-        filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-    } else if (sortOption === 'highToLow') {
-        filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-    }
+    // تحميل المزيد
+    const loadMore = () => {
+        setVisibleProducts(prev => prev + 16); // زيادة عدد المنتجات المرئية
+    };
 
     return (
         <div className="shp-category"> 
+        <NavbarComponent /> 
             {/* Banner */}
             <div className="container-fluid px-0 mb-5">
                 <img src={props.banner} alt="" className="img-fluid" style={{ maxHeight: '15cm',  width: '100%', objectFit: 'cover' }} />
-                <div className="position-absolute top-50 start-50 translate-middle">
-        <h1 className="text-white text-center" style={{ fontSize: '65px' }}>SHOP</h1>
-        <ul className="list-unstyled text-white text-center" style={{ fontSize: '20px' }}>
-          <li><a href="#">Home</a> / <a href="#">Pages</a> / <a href="#">{props.categorey}</a> </li>
-        </ul>
-      </div>
             </div>
 
             {/* Filter options */}
@@ -71,23 +78,21 @@ const Category = (props) => {
                 <div className="row align-items-center justify-content-between mb-3">
                     <div className="col-auto">
                         <p className="mb-0">
-                            <span>showing 1-{filteredProducts.length} </span> out of {all_product.length} products
+                            <span>showing 1-{Math.ceil(filteredProducts.length/16)} </span> out of {all_product.length} products
                         </p>
                     </div>
                     <div className="col-auto">
-                    
-                    <div className="input-group">
-                    <div className="input-group-prepend">
-                            <span className="input-group-text" style={{ border: 'none', background: 'none' , textAlign: 'center'}}>Sort by</span>
+                        <div className="input-group">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" style={{ border: 'none', background: 'none' , textAlign: 'center'}}>Sort by</span>
+                            </div>
+                            <select className="custom-select border rounded-pill " id="sortSelect" onChange={(e) => sortProducts(e.target.value)}>
+                                <option defaultValue>All</option>
+                                <option value="lowToHigh">Price low to high</option>
+                                <option value="highToLow">Price high to low</option>
+                            </select>
                         </div>
-                        <select className="custom-select border rounded-pill " id="sortSelect" onChange={(e) => sortProducts(e.target.value)}>
-                            <option defaultValue>All</option>
-                            <option value="lowToHigh">Price low to high</option>
-                            <option value="highToLow">Price high to low</option>
-                        </select>
                     </div>
-                </div>
-
                 </div>
 
                 {/* Filter options and Product list */}
@@ -111,25 +116,23 @@ const Category = (props) => {
                     <div className="col-md-9">
                          {/* Product list */}
                          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 justify-content-center">
-                            {filteredProducts.map((item, i) => {
-                                 if (props.categorey === item.categorey) {
-                                    return (
+                            {filteredProducts.slice(0, visibleProducts).map((item, i) => (
                                 <div key={i} className="col mb-4">
-                                    <Item id={item.id} name={item.name } image={item.image}  price={item.price} />
-                                    
+                                    <Item id={item.id} name={item.name} image={item.image} price={item.price} />
                                 </div>
-                                    )
-                                } else {
-                                    return null;
-                                }
-                                })}
+                            ))}   
                         </div>
-                        <div className="more">
-                            Explore more
-                        </div>
+                            {/* زر لتحميل المزيد */}
+                            {visibleProducts < filteredProducts.length && (
+                                <div className="more" onClick={loadMore}>
+                                    Explore more
+                                </div>
+                            )}
                     </div>
                 </div>
             </div>
+            
+      <Footer />
 
         </div>
     );

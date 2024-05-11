@@ -1,0 +1,57 @@
+.related {
+    text-align: center;
+}
+
+.related h4 {
+    color: #171717;
+    font-size: 1.5rem;
+    margin: 20px 0; /* Add margin top and bottom */
+    margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+    .related h4 {
+        font-size: 40px; /* Adjust font size for smaller screens */
+        white-space: normal; /* Allow line break */
+    }
+}
+
+@media (max-width: 576px) {
+    .related h4 {
+        font-size: 30px; /* Further adjust font size for even smaller screens */
+    }
+}
+
+.line-img-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add space between items */
+    margin: 20px 0; /* Add margin top and bottom */
+}
+
+.line-img {
+    flex-grow: 1;
+}
+
+.line-img img {
+    width: 100%;
+    height: auto;
+}
+.comment-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: block; /* تحديد العناصر لتكون على شكل سطر */
+  }
+  
+  .comment-user {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .comment-text {
+    font-size: 14px;
+  }
+  

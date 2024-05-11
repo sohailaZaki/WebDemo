@@ -1,14 +1,16 @@
 
 import Slider from "./Slider"
 import Sitedescription from "./Sitedescription"
-
 import ProductList from "./ProductsList"
 import Categories from "./CategoriesSection"
 import SummerCollection from "./SummerCollectionBlock"
+import NavbarComponent from "../navbar/navbar"
+import Footer from "../footer/footer"
 function Home(){
     return(
 <>
 <div>
+<NavbarComponent/>
 <Slider/>
 <Sitedescription/>
 <ProductList
@@ -29,6 +31,7 @@ apiUrl="https://makeup-api.herokuapp.com/api/v1/products.json?product_type=masca
 Status="Realted"
 />
 <SummerCollection/>
+<Footer/>
 </div>
 </>
         )
