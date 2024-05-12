@@ -10,24 +10,27 @@ function Home(){
     return(
 <>
 <div>
-<NavbarComponent/>
+
 <Slider/>
 <Sitedescription/>
 <ProductList
 productType="New Arrivals"
-apiUrl="https://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
 Status="New"
+sliceStart={0}
+sliceEnd={6}
 />
 
 <ProductList
 productType="Best Sellers"
-apiUrl="https://makeup-api.herokuapp.com/api/v1/products.json?product_type=eyebrow"
 Status="Hot"
+sliceStart={7}
+sliceEnd={12}
 />
 <Categories/>
 <ProductList
 productType="Related Products"
-apiUrl="https://makeup-api.herokuapp.com/api/v1/products.json?product_type=mascara"
+sliceStart={13}
+sliceEnd={19}
 Status="Realted"
 />
 <SummerCollection/>

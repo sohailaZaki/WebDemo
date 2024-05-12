@@ -78,7 +78,7 @@ const Spage = (props) => {
     return (
         
         <div className="shp-category"> 
-        <NavbarComponent /> 
+
             {/* Banner */}
             <div className="container-fluid px-0 mb-5">
                 <img src={props.banner} alt="" className="img-fluid" style={{ maxHeight: '15cm',  width: '100%', objectFit: 'cover' }} />

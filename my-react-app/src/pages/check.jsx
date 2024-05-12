@@ -125,6 +125,7 @@ const CheckoutPage = () => {
 
     return (
         <div className="container">
+
             <div style={{ paddingBottom: '30px', paddingTop: '80px' , color:'black'}}>
                 <h1 style={{ fontSize: '5rem' }}>Checkout</h1>
                 

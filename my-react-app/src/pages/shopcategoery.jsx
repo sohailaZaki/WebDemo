@@ -8,7 +8,8 @@ import Product from "./product";
 import NavbarComponent from "../component/navbar/navbar";
 import Footer from "../component/footer/footer";
 
-const Category = (props) => {
+const Category = ({ category }) => {
+    
     const { all_product } = useContext(ShopContext);
     console.log(" shop all_product:", all_product); 
 
@@ -16,10 +17,10 @@ const Category = (props) => {
     const [sortOption, setSortOption] = useState(null);
     const [visibleProducts, setVisibleProducts] = useState(16); // عدد المنتجات المرئية
 
-    const filterProductsByPriceRange = (minPrice, maxPrice) => {
+    const filterProductsByCategoryAndPriceRange = (minPrice, maxPrice) => {
         return all_product.filter(item => {
             const price = parseFloat(item.price);
-            return price >= minPrice && price <= maxPrice;
+            return item.category === category && price >= minPrice && price <= maxPrice;
         });
     };
 
@@ -47,10 +48,10 @@ const Category = (props) => {
 
     if (all_product) { // Check if all_product is defined
         if (selectedPriceRange === "All") {
-            filteredProducts = all_product.filter(item => item.category === props.category);
+            filteredProducts = all_product.filter(item => item.category === category);
         } else {
             const [minPrice, maxPrice] = selectedPriceRange.split(" - ").map(parseFloat);
-            filteredProducts = filterProductsByPriceRange(minPrice, maxPrice).filter(item => item.category === props.category);
+            filteredProducts = filterProductsByCategoryAndPriceRange(minPrice, maxPrice);
         }
 
         if (sortOption === 'lowToHigh') {
@@ -67,10 +68,10 @@ const Category = (props) => {
 
     return (
         <div className="shp-category"> 
-        <NavbarComponent /> 
+   
             {/* Banner */}
             <div className="container-fluid px-0 mb-5">
-                <img src={props.banner} alt="" className="img-fluid" style={{ maxHeight: '15cm',  width: '100%', objectFit: 'cover' }} />
+            <img src={category.banner} alt="" className="img-fluid" style={{ maxHeight: '15cm',  width: '100%', objectFit: 'cover' }} />
             </div>
 
             {/* Filter options */}

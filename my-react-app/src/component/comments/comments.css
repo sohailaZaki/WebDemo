@@ -54,4 +54,20 @@
   .comment-text {
     font-size: 14px;
   }
-  
+  .comment-box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .comment-user {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .comment-text {
+    margin-bottom: 10px;
+  }
+  .comment-stars {
+    margin-top: 5px;
+  }

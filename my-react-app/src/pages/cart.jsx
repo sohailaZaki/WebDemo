@@ -12,7 +12,7 @@ const Cart = () => {
     const { cartitems } = useContext(ShopContext);
     return (
         <div>
-            <NavbarComponent /> 
+         
             <Cartitems/>
             
              <Footer />
