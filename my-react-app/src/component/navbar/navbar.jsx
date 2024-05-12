@@ -39,7 +39,7 @@ const NavbarComponent = () => {
                             </NavDropdown>
                             {/* إضافة عناصر NavDropdown الأخرى */}
                             <NavDropdown title="Pages" id="dropdownPages">
-                                <NavDropdown.Item href="about.html">About</NavDropdown.Item>
+                            <NavDropdown.Item><Link to ='/about'>About</Link></NavDropdown.Item>
                                 <NavDropdown.Item><Link to ='/cart' >Cart</Link></NavDropdown.Item>
                                 {/* إضافة الصفحات الأخرى هنا */}
                             </NavDropdown>

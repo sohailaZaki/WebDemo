@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import collection from "../../images/collection-banner.jpg"
 function SummerCollection (){
     return (
@@ -22,7 +23,7 @@ function SummerCollection (){
             fringilla odio mi. Consequat pharetra at magna imperdiet cursus ac faucibus sit libero. Ultricies quam nunc,
             lorem sit lorem urna, pretium aliquam ut. In vel, quis donec dolor id in. Pulvinar commodo mollis diam sed
             facilisis at cursus imperdiet cursus ac faucibus sit faucibus sit libero.</p>
-          <a href="#" class="btn btn-dark  text-uppercase mt-3">Shop Collection</a>
+          <Link to="/shop" class="btn btn-dark  text-uppercase mt-3">Shop Collection</Link>
 
         </div>
       </div>
