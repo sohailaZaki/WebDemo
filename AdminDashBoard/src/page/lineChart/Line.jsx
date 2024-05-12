@@ -3,39 +3,39 @@ import { Box } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import axios from "axios";
 
-// const data = [
-//   {
-//     id: "total sales",
-//     data: [
-//       { x: "2019", y: 120 + 100 + 80 }, // Total sales for 2019
-//       { x: "2020", y: 150 + 130 + 110 }, // Total sales for 2020
-//       { x: "2021", y: 180 + 160 + 140 }, // Total sales for 2021
-//       { x: "2022", y: 200 + 180 + 160 }, // Total sales for 2022
-//       { x: "2023", y: 220 + 200 + 180 }, // Total sales for 2023
-//     ],
-//   },
-//   {
-//     id: "makeup",
-//     data: [
-//       { x: "2019", y: 120 },
-//       { x: "2020", y: 150 },
-//       { x: "2021", y: 180 },
-//       { x: "2022", y: 200 },
-//       { x: "2023", y: 220 },
-//     ],
-//   },
-//   {
-//     id: "skincare",
-//     data: [
-//       { x: "2019", y: 100 },
-//       { x: "2020", y: 130 },
-//       { x: "2021", y: 160 },
-//       { x: "2022", y: 180 },
-//       { x: "2023", y: 200 },
-//     ],
-//   },
+const data1 = [
+  {
+    id: "total sales",
+    data: [
+      { x: "2019", y: 120 + 100 + 80 }, // Total sales for 2019
+      { x: "2020", y: 150 + 130 + 110 }, // Total sales for 2020
+      { x: "2021", y: 180 + 160 + 140 }, // Total sales for 2021
+      { x: "2022", y: 200 + 180 + 160 }, // Total sales for 2022
+      { x: "2023", y: 220 + 200 + 180 }, // Total sales for 2023
+    ],
+  },
+  {
+    id: "makeup",
+    data: [
+      { x: "2019", y: 120 },
+      { x: "2020", y: 150 },
+      { x: "2021", y: 180 },
+      { x: "2022", y: 200 },
+      { x: "2023", y: 220 },
+    ],
+  },
+  {
+    id: "skincare",
+    data: [
+      { x: "2019", y: 100 },
+      { x: "2020", y: 130 },
+      { x: "2021", y: 160 },
+      { x: "2022", y: 180 },
+      { x: "2023", y: 200 },
+    ],
+  },
  
-// ];
+];
 
 const Line = ({isDahboard = false}) => {
   const colors = ["#d81b60","#f48fb1", "#f06292", "#f8bbd0"]; // Set pink color here
@@ -103,7 +103,7 @@ const Line = ({isDahboard = false}) => {
   return (
     <Box sx={{  height: isDahboard?  "280px"  :  "75vh" }}>
       <ResponsiveLine
-        data={salesData}
+        data={data1}
         colors={colors}
         curve="linear"
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}

@@ -3,56 +3,56 @@ import { ResponsiveBar } from "@nivo/bar";
 import { Box, Typography, useTheme } from "@mui/material";
 import axios from "axios";
 
-// const data = [
-//   {
-//     "month": "Jan",
-//     "make-up": 84,
-//     "skin-care": 32,
+const data1 = [
+  {
+    "month": "Jan",
+    "make-up": 84,
+    "skin-care": 32,
    
-//   },
-//   {
-//     "month": "Feb",
-//     "make-up": 52,
-//     "skin-care": 140,
+  },
+  {
+    "month": "Feb",
+    "make-up": 52,
+    "skin-care": 140,
    
-//   },
-//   {
-//     "month": "Mar",
-//     "make-up": 188,
-//     "skin-care": 130,
+  },
+  {
+    "month": "Mar",
+    "make-up": 188,
+    "skin-care": 130,
    
-//   },
-//   {
-//     "month": "Apr",
-//     "make-up": 144,
-//     "skin-care": 168,
+  },
+  {
+    "month": "Apr",
+    "make-up": 144,
+    "skin-care": 168,
    
-//   },
-//   {
-//     "month": "May",
-//     "make-up": 8,
-//     "skin-care": 68,
+  },
+  {
+    "month": "May",
+    "make-up": 8,
+    "skin-care": 68,
    
-//   },
-//   {
-//     "month": "Jun",
-//     "make-up": 153,
-//     "skin-care": 191,
+  },
+  {
+    "month": "Jun",
+    "make-up": 153,
+    "skin-care": 191,
    
-//   },
-//   {
-//     "month": "Jul",
-//     "make-up": 169,
-//     "skin-care": 180,
-//     // "perfumes": 133
-//   },
-//   {
-//     "month": "Nov",
-//     "make-up": 169,
-//     "skin-care": 180,
-//     // "perfumes": 233
-//   }
-// ];
+  },
+  {
+    "month": "Jul",
+    "make-up": 169,
+    "skin-care": 180,
+    // "perfumes": 133
+  },
+  {
+    "month": "Nov",
+    "make-up": 169,
+    "skin-care": 180,
+    // "perfumes": 233
+  }
+];
 
 const Bar = ({ isDashbord = false }) => {
   const [salesData, setSalesData] = useState([]);
@@ -102,7 +102,7 @@ const Bar = ({ isDashbord = false }) => {
   return (
     <Box sx={{height: isDashbord ? "295px" : "75vh",width:isDashbord ?600: 900}}>
       <ResponsiveBar
-        data={salesData}
+        data={data1}
         keys={['make-up', 'skin-care']}
         indexBy="month"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}

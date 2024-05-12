@@ -4,27 +4,21 @@ import { ResponsivePie } from "@nivo/pie";
 import { Box, useTheme } from "@mui/material";
 import axios from "axios";
 
-// const data = [
-//   {
-//     id: "makeup",
-//     label: "Make-up",
-//     value: 272,
-//     color: "hsl(107, 70%, 50%)",
-//   },
-//   {
-//     id: "skincare",
-//     label: "Skincare",
-//     value: 543,
-//     color: "hsl(64, 70%, 50%)",
-//   },
-//   {
-//     id: "perfumes",
-//     label: "Perfumes",
-//     value: 401,
-//     color: "black",
-//   },
- 
-// ];
+const data1 = [
+  {
+    id: "makeup",
+    label: "Make-up",
+    value: 272,
+    color: "hsl(107, 70%, 50%)",
+  },
+  {
+    id: "skincare",
+    label: "Skincare",
+    value: 543,
+    color: "hsl(64, 70%, 50%)",
+  },
+
+];
 
 const Pie = ({ isDashbord = false }) => {
   
@@ -86,7 +80,7 @@ const Pie = ({ isDashbord = false }) => {
   return(
   <Box sx={{ height: isDashbord ? "200px" : "75vh",width:isDashbord ? "580px":1100 }}>
       <ResponsivePie
-        data={pieChartData}
+        data={data1}
     
         margin={
           isDashbord
