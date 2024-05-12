@@ -8,7 +8,7 @@ import Footer from "../component/footer/footer";
 const Shop = () => {
     return (
         <div>
-            <NavbarComponent /> 
+       
             <Photo />
             <Shopall/>
             

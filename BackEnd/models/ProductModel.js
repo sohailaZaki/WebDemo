@@ -29,6 +29,17 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
+    ratings : [
+       {
+        star : Number,
+        comment : String,
+        postedby : {type : mongoose.Schema.Types.ObjectId, ref : "User" }
+       }
+    ],
+    totalrating: {
+        type: String,
+        default: 0,
+      },
 });
 
 module.exports = mongoose.model('Product', productSchema);

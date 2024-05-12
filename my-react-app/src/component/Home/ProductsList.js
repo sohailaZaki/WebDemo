@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import line from "../../images/line.png"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import '@fortawesome/fontawesome-free/css/all.css';
 import Product from '../../pages/product';
+import { useNavigate } from 'react-router-dom';
 import {
   MDBCardBody,
   MDBCardImage,
@@ -14,7 +15,8 @@ import {
 import "./ProductList.css";
 import { Link } from 'react-router-dom';
 
-function ProductList({ productType, apiUrl, Status }) {
+function ProductList({ productType, sliceStart = 0, sliceEnd = 10 ,Status}) {
+  const navigate = useNavigate();
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 5 },
     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
@@ -31,18 +33,17 @@ function ProductList({ productType, apiUrl, Status }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(apiUrl);
+        const response = await fetch('http://localhost:4000/allproduct'); // Adjust URL to match your backend endpoint
         const data = await response.json();
-        const productsWithImage = data.filter(product => product.image_link);
-        setProducts(productsWithImage.slice(7, 15));
+        setProducts(data.slice(sliceStart, sliceEnd)); // Slice the products array
         setLoading(false);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
-  
+
     fetchProducts();
-  }, [apiUrl]);
+  }, [sliceStart, sliceEnd]);
 
   const handleCartClick = () => {
     setCartClicked(!cartClicked);
@@ -55,18 +56,18 @@ function ProductList({ productType, apiUrl, Status }) {
   const handleBuyNowClick = () => {
     console.log('Button clicked!'); // Adding a log to check if the button is clicked
     setShowProduct(true);
-    console.log('showProduct:', showProduct); 
+    console.log('showProduct:', showProduct);
   };
 
   return (
     <>
       <div className="d-flex flex-wrap justify-content-between align-items-center my-5 py-lg-5">
         <div className="line-img my-2">
-          <img src={line} alt=""/>
+          <img src={line} alt="" />
         </div>
         <h4 className="text-uppercase mb-0" style={{ padding: "10px 150px" }}>{productType}</h4>
         <div className="line-img my-2">
-          <img src={line} alt=""/>
+          <img src={line} alt="" />
         </div>
       </div>
 
@@ -77,24 +78,27 @@ function ProductList({ productType, apiUrl, Status }) {
           <Carousel responsive={responsive}>
             {products.map((product, index) => (
               <div key={index} className="bg-image-container">
-                <MDBRipple
+              <Link to={`/product/${product.id}`}> 
+              <MDBRipple
                   rippleTag="div"
                   className="hover-zoom"
                   style={{ position: "relative", display: "block" }}
-                >
-                  <MDBCardImage
-                    src={product.image_link}
-                    className="w-80"
-                    style={{ transition: "transform 0.3s ease" }}
-                  />
+                >  <Link to={`/product/${product.id}`}>
+                <MDBCardImage
+                src={product.image}
+                className="w-80"
+                style={{ transition: "transform 0.3s ease" }}
+              />
+                </Link>
+            
                   <div className="overlay">
                     <div className="overlay-content">
                       <h5>
                         <span className="badge bg-primary ms-2">{Status}</span>
                       </h5>
-                      <MDBBtn color="primary" size="sm" className="buy-now-btn" onClick={handleBuyNowClick}>
+                      <Link to={`/product/${product.id}`} className="btn buy-now-btn">
                         Buy Now
-                      </MDBBtn>
+                        </Link>
                       <div className="overlay-icons">
                         <MDBIcon fas icon="shopping-cart" className={`overlay-icon ${cartClicked ? 'clicked' : ''}`} id="Cart-icon" onClick={handleCartClick} />
                         <MDBIcon fas icon="heart" className={`overlay-icon ${heartClicked ? 'text-red' : ''}`} id="heart-icon" onClick={handleHeartClick} />
@@ -102,20 +106,21 @@ function ProductList({ productType, apiUrl, Status }) {
                     </div>
                   </div>
                 </MDBRipple>
+                </Link> 
                 <MDBCardBody>
                   <a href={product.product_link} className="text-reset" target="_blank" rel="noopener noreferrer">
-                    <h5 className="card-title mb-3" style={{textAlign: 'center'}}>{product.name}</h5>
+                    <h5 className="card-title mb-3" style={{ textAlign: 'center' }}>{product.name}</h5>
                   </a>
-                  <p>{product.category}</p>
-                  <h6 className="mb-3" style={{textAlign: 'center'}}>{product.price}$</h6>
+                  <p>{product && product.category}</p>
+                  <h6 className="mb-3" style={{ textAlign: 'center' }}>{product.price}$</h6>
                 </MDBCardBody>
               </div>
             ))}
           </Carousel>
         )}
 
-        {showProduct && <Product/>} {/* Render Product component if showProduct is true */}
-        
+        {showProduct && <Product />} {/* Render Product component if showProduct is true */}
+
         <div className="text-center mt-2">
           <Link to="/shop" className="btn" id='Productsbtn'>View All Products</Link>
         </div>
