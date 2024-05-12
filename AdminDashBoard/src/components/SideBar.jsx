@@ -85,14 +85,15 @@ const Array1 = [
 const Array2 = [
   { text: "Add User", icon: <PersonAddAlt1OutlinedIcon />, path: "/form" },
   { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/calendar" },
- 
+  { text: "Bar Chart", icon: <BarChartOutlined />, path: "/barChart" },
 ];
 const Array3 = [
-  { text: "Bar Chart", icon: <BarChartOutlined />, path: "/barChart" },
+  
   { text: "Pie Chart", icon: <PieChartOutlineOutlined />, path: "/pieChart" },
   { text: "Line Chart", icon: <TimelineOutlined />, path: "/lineChart" },
   {text:"Products" ,icon:<ShoppingCartOutlinedIcon/>,path:"/products"},
   {text:"Category" ,icon:<CategoryOutlinedIcon/>,path:"/category"}
+  
 
 ];
 const SiderBar=({open,handleDrawerClose})=>{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { rows } from "./data";
 import { useTheme } from "@mui/material";
@@ -8,10 +8,24 @@ import {
   LockOpenOutlined,
   SecurityOutlined,
 } from "@mui/icons-material";
-
+import axios from 'axios';
 import "./Team.css"
 const Team = () => {
-  
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('/api/users');
+      const userDataWithIds = response.data.map((user, index) => ({ ...user, id: index + 1 }));
+      setUserData(userDataWithIds);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
   // field ==> Reqird
   const columns = [
     {
@@ -107,11 +121,11 @@ const Team = () => {
       }}>Users</Typography>
       <Typography color="bLack" sx={{
         fontSize: 20, my: 2
-      }} >Managing the Users in The System </Typography>
+      }} >Users in The System </Typography>
 
       <Box sx={{ height: " 89%", width: 1370 ,mx: "auto" }}>
         <DataGrid
-          rows={rows}
+          rows={userData}
           // @ts-ignore
           columns={columns}
         />

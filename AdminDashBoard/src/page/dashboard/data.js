@@ -1,39 +1,34 @@
-export const orderStatusData = [
-  {
-    id: "delivered",
-    label: "Delivered",
-    value: 40,
-    color: "hsl(111, 90%, 90%)",
-  },
-  {
-    id: "processing",
-    label: "Processing",
-    value: 30,
-    color: "hsl(22, 90%, 90%)",
-  },
-  {
-    id: "pending",
-    label: "Pending",
-    value: 20,
-    color: "hsl(240, 90%, 90%)",
-  },
-];
+// export const orderStatusData = [
+//   {
+//     id: "delivered",
+//     label: "Delivered",
+//     value: 40,
+//     color: "hsl(111, 90%, 90%)",
+//   },
+//   {
+//     id: "processing",
+//     label: "Processing",
+//     value: 30,
+//     color: "hsl(22, 90%, 90%)",
+//   },
+//   
+// ];
 
 
-export const data2 = [
-  { id: "category1", label: "Category 1", value: 100 },
-  { id: "category2", label: "Category 2", value: 200 },
-  { id: "category3", label: "Category 3", value: 300 },
-  // Additional data points for other categories or segments
-];
+// export const data2 = [
+//   { id: "category1", label: "Category 1", value: 100 },
+//   { id: "category2", label: "Category 2", value: 200 },
 
-//number of new clients added over a certain time period,
-export const data3 = [
-  { id: "january", label: "January", value: 100 },
-  { id: "february", label: "February", value: 150 },
-  { id: "march", label: "March", value: 200 },
-  // Additional data points for other months or segments
-];
+//   // Additional data points for other categories or segments
+// ];
+
+// //number of new clients added over a certain time period,
+// export const data3 = [
+//   { id: "january", label: "January", value: 100 },
+//   { id: "february", label: "February", value: 150 },
+//   { id: "march", label: "March", value: 200 },
+//   // Additional data points for other months or segments
+// ];
 
 
 

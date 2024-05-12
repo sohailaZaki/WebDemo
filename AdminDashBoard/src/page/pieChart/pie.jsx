@@ -1,36 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 
 import { Box, useTheme } from "@mui/material";
+import axios from "axios";
 
-const data = [
-  {
-    id: "makeup",
-    label: "Make-up",
-    value: 272,
-    color: "hsl(107, 70%, 50%)",
-  },
-  {
-    id: "skincare",
-    label: "Skincare",
-    value: 543,
-    color: "hsl(64, 70%, 50%)",
-  },
-  {
-    id: "perfumes",
-    label: "Perfumes",
-    value: 401,
-    color: "black",
-  },
+// const data = [
+//   {
+//     id: "makeup",
+//     label: "Make-up",
+//     value: 272,
+//     color: "hsl(107, 70%, 50%)",
+//   },
+//   {
+//     id: "skincare",
+//     label: "Skincare",
+//     value: 543,
+//     color: "hsl(64, 70%, 50%)",
+//   },
+//   {
+//     id: "perfumes",
+//     label: "Perfumes",
+//     value: 401,
+//     color: "black",
+//   },
  
-];
+// ];
 
 const Pie = ({ isDashbord = false }) => {
+  
   const theme = useTheme();
-  return (
-    <Box sx={{ height: isDashbord ? "200px" : "75vh",width:isDashbord ? "580px":1100 }}>
+  const [pieChartData, setPieChartData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    try {
+      // Fetch data from API
+      const response = await axios.get("/api/data");
+  
+      // Extract orders, products, and categories from the response
+      const { orders, products, categories } = response.data;
+  
+      // Filter orders for the desired year
+      const ordersThisYear = orders.filter(order => new Date(order.orderDate).getFullYear() === 2024);
+  
+      // Join orders with products and categories
+      const ordersWithProductDetails = ordersThisYear.map(order => {
+        const product = products.find(p => p.productId === order.productId);
+        const category = categories.find(c => c.categoryId === product.categoryId);
+        return { ...order, productName: product.name, categoryName: category.name };
+      });
+  
+      // Calculate total sales per category
+      const categorySales = {};
+      ordersWithProductDetails.forEach(order => {
+        if (!categorySales[order.categoryName]) {
+          categorySales[order.categoryName] = 0;
+        }
+        categorySales[order.categoryName] += order.totalAmount;
+      });
+  
+      // Calculate total sales
+      const totalSales = Object.values(categorySales).reduce((acc, cur) => acc + cur, 0);
+  
+      // Calculate percentage of sales for each category
+      const categorySalesPercentage = {};
+      for (const categoryName in categorySales) {
+        categorySalesPercentage[categoryName] = (categorySales[categoryName] / totalSales) * 100;
+      }
+  
+      // Format data for the pie chart
+      const formattedData = Object.keys(categorySalesPercentage).map(categoryName => ({
+        id: categoryName,
+        label: categoryName,
+        value: categorySalesPercentage[categoryName],
+      }));
+  
+    
+      // Set the formatted data to the state
+      setPieChartData(formattedData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  return(
+  <Box sx={{ height: isDashbord ? "200px" : "75vh",width:isDashbord ? "580px":1100 }}>
       <ResponsivePie
-        data={data}
+        data={pieChartData}
     
         margin={
           isDashbord

@@ -9,6 +9,7 @@ import { Box, Stack, Typography, useTheme } from "@mui/material";
 
 const Dashboard = () => {
   const theme = useTheme();
+ 
   return (
     <div style={{ maxWidth: "100%", margin: "0 auto",padding: "0 16px"  }}>
       <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
@@ -21,7 +22,7 @@ const Dashboard = () => {
           <Button
             sx={{ padding: "6px 8px", textTransform: "capitalize", bgcolor: "#f48fb1" }}
             variant="contained"
-
+            // Add click event handler
           >
             <DownloadOutlined />
             Download Reports

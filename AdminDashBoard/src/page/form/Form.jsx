@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Alert, Button, MenuItem, Snackbar, Stack, Typography, colors } from "@mui/material";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 
 
@@ -43,8 +44,16 @@ const Form = () => {
     setOpen(true);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     //take data but it on db
+    try {
+      // Send form data to the backend API endpoint
+      const response = await axios.post("/api/users", formData); // Replace '/api/users' with your actual backend API endpoint
+      console.log("User created successfully:", response.data);
+      handleClick();
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
     console.log("doneeeeeeeeeeee");
     handleClick();
   };
@@ -124,8 +133,7 @@ const Form = () => {
         />
 
         <TextField label="Adress 1" variant="filled" />
-        <TextField label="Adress 2" variant="filled" />
-
+       
         <TextField
           variant="filled"
           id="outlined-select-currency"
