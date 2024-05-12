@@ -5,6 +5,10 @@ const jwt =require("jsonwebtoken");
 const { generateToken } = require("../config/jwtToken");
 const { generateRefreshToken } = require("../config/refreshtoken");
 const validateMongoDbId = require("../Utils/validateMongoDbId");
+
+
+
+
 const signUp = asyncHandler(async (req, res,next) => { 
     try{
         const user = await User.findOne({email:req.body.email});
@@ -223,6 +227,19 @@ const saveAddress = asyncHandler(async (req, res, next) => {
       throw new Error(error);
     }
   });
+
+  // API endpoint to fetch all users
+  const alluser = asyncHandler(async (req, res) => {
+    try {
+      const users = await User.find({});
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+ 
+
   // Get a single user
 
 const getaUser = asyncHandler(async (req, res) => {
@@ -239,14 +256,18 @@ const getaUser = asyncHandler(async (req, res) => {
   }
 });
  module.exports = {
+
     signUp,
     logIn,
     handleRefreshToken,
     updatePassword,
-    // forgotPasswordToken,
     resetPassword,
     loginAdmin,
     getWishlist,
     saveAddress,
-    getaUser,
- }
+
+    alluser,
+      getaUser,
+  };
+
+

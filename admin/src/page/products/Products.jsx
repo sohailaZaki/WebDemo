@@ -1,15 +1,13 @@
+import { AddCircleOutline } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { AddCircleOutline, DeleteOutline, ListAlt } from '@mui/icons-material';
-// import "./sidebar.css";
-
-// import './addproduct.css'
+import './addproduct.css'
 import upload from '../../assets/upload_area.svg';
 
 
-export default function NewProduct() {
-  
+const Products = () => {
     const [image, SetImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
         name:"",
@@ -113,4 +111,6 @@ export default function NewProduct() {
     )}
 </div>
   )
-}
+};
+
+export default Products;

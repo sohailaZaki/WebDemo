@@ -15,7 +15,7 @@ const Row4 = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('http://localhost:4000/allproduct');
       const productsWithIds = response.data.map((product, index) => ({ ...product, id: index + 1 }));
       setProductsRows(productsWithIds);
     } catch (error) {

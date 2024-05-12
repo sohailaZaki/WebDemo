@@ -5,7 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
-
+import {data2S,orderStatusDataS} from './data.js'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import axios from "axios";
 const Row1 = () => {
@@ -97,10 +97,10 @@ const Row1 = () => {
       <Card
         icon={<ShoppingCartIcon
           sx={{ fontSize: "23px", color: theme.palette.secondary.main }} />}
-        title={totalOrders.toString()}//number of orsers
+        title={"555"}//number of orsers
         subTitle={"Orders Status"}
         increase={"+14%"}
-        data={orderStatusData} scheme={"nivo"} />
+        data={orderStatusDataS} scheme={"nivo"} />
 
       <Card
         icon={
@@ -108,10 +108,10 @@ const Row1 = () => {
             sx={{ fontSize: "23px", color: theme.palette.secondary.main }}
           />
         }
-        title={totalSales.toString()} //tatol money
+        title={"$56780"} //tatol money
         subTitle={"Sales obtained"}
         increase={"+21%"}
-        data={data2}
+        data={data2S}
         scheme={"category10"}
       />
 
