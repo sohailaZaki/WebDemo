@@ -7,12 +7,41 @@ import {
   useTheme,
 } from "@mui/material";
 import Line from "../../page/lineChart/Line";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DownloadOutlined } from "@mui/icons-material";
-import { Transactions } from "./data";
+import axios from "axios";
+
 
 const Row2 = () => {
+
   const theme = useTheme();
+  const [recentOrders, setRecentOrders] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+     // Fetch orders data from the API or backend server
+    const response = await axios.get("/api/orders");
+
+    // Filter orders placed within the last 3 months
+    const currentDate = new Date();
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
+
+    const recentOrders = response.data.filter(order => {
+      const orderDate = new Date(order.orderDate);
+      return orderDate >= threeMonthsAgo && orderDate <= currentDate;
+    });
+
+    // Set the filtered recent orders data
+    setRecentOrders(recentOrders);
+    } catch (error) {
+      console.error("Error fetching recent orders data:", error);
+    }
+  };
   return (
     <Stack direction={"row"} flexWrap={"wrap"} gap={1.2} mt={1.3}>
       <Paper sx={{ maxWidth: 900, flexGrow: 1, minWidth: "400px" }}>
@@ -67,7 +96,7 @@ const Row2 = () => {
           </Typography>
         </Paper>
 
-        {Transactions.map((item) => {
+        {recentOrders.map((item) => {
           return (
             <Paper
               sx={{
