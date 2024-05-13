@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
+import axios from "axios";
 
-const data = [
+const data1 = [
   {
     id: "total sales",
     data: [
@@ -33,25 +34,76 @@ const data = [
       { x: "2023", y: 200 },
     ],
   },
-  {
-    id: "perfume",
-    data: [
-      { x: "2019", y: 80 },
-      { x: "2020", y: 110 },
-      { x: "2021", y: 140 },
-      { x: "2022", y: 160 },
-      { x: "2023", y: 180 },
-    ],
-  },
+ 
 ];
 
 const Line = ({isDahboard = false}) => {
   const colors = ["#d81b60","#f48fb1", "#f06292", "#f8bbd0"]; // Set pink color here
+  const [salesData, setSalesData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // Fetch orders from the backend
+      const response = await axios.get("/api/orders"); // Adjust the endpoint accordingly
+      const orders = response.data;
+
+      // Filter orders for the last 5 years
+      const currentYear = new Date().getFullYear();
+      const ordersLast5Years = orders.filter(order => {
+        const orderYear = new Date(order.orderDate).getFullYear();
+        return orderYear >= currentYear - 4 && orderYear <= currentYear;
+      });
+
+      // Calculate total sales and sales by category for the last 5 years
+      const totalSales = ordersLast5Years.reduce((acc, order) => acc + order.totalAmount, 0);
+      const salesByCategory = {};
+      ordersLast5Years.forEach(order => {
+        order.products.forEach(product => {
+          const category = product.category;
+          if (!salesByCategory[category]) {
+            salesByCategory[category] = 0;
+          }
+          salesByCategory[category] += order.totalAmount;
+        });
+      });
+
+      // Format the data for the line chart
+      const formattedData = [
+        {
+          id: "total sales",
+          data: [
+            { x: currentYear - 4, y: salesData[currentYear - 4] || 0 },
+            { x: currentYear - 3, y: salesData[currentYear - 3] || 0 },
+            { x: currentYear - 2, y: salesData[currentYear - 2] || 0 },
+            { x: currentYear - 1, y: salesData[currentYear - 1] || 0 },
+            { x: currentYear, y: totalSales },
+          ],
+        },
+        ...Object.keys(salesByCategory).map(category => ({
+          id: category,
+          data: [
+            { x: currentYear - 4, y: 0 },
+            { x: currentYear - 3, y: 0 },
+            { x: currentYear - 2, y: 0 },
+            { x: currentYear - 1, y: 0 },
+            { x: currentYear, y: salesByCategory[category] },
+          ],
+        })),
+      ];
+
+      setSalesData(formattedData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <Box sx={{  height: isDahboard?  "280px"  :  "75vh" }}>
       <ResponsiveLine
-        data={data}
+        data={data1}
         colors={colors}
         curve="linear"
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
