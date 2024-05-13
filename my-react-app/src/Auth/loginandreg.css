@@ -13,7 +13,7 @@
   justify-content: center;
   height: 100vh;
 
-  background-image: url('C:\Users\sara\Desktop\web project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg');
+  background-image: url('D:\grade 3\Semster 2\Web Engineering\project\Git Project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg');
 
   background-size: cover; /* Ensures the background image covers the entire viewport */
   background-position: center; /* Centers the background image */
@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: center;
 
-  background-image: url('C:\Users\sara\Desktop\web project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+  background-image: url('D:\grade 3\Semster 2\Web Engineering\project\Git Project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\bg.jpeg'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
   background-size: cover; /* Ensures the background image covers the entire viewport */
   background-position: center; /* Centers the background image */
   background-repeat: no-repeat; /* Prevents the background image from repeating */

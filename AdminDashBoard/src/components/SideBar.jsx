@@ -87,7 +87,7 @@ const Array2 = [
 const Array3 = [
   { text: "Line Chart", icon: <TimelineOutlined />, path: "/lineChart" },
   {text:"Add Products" ,icon:<AddShoppingCartIcon/>,path:"/products"},
-  {text:"Edit on Products",icon:<ShoppingCartOutlinedIcon/>,path:"/listproducts"}
+  {text:"Display Products",icon:<ShoppingCartOutlinedIcon/>,path:"/listproducts"}
  
 ];
 const SiderBar=({open,handleDrawerClose})=>{

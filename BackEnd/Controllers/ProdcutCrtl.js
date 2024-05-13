@@ -16,19 +16,16 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const updateProduct = asyncHandler(async (req, res) => {
-  const id = req.params;
-  validateMongoDbId(id);
+exports.updateProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
   try {
-    if (req.body.title) {
-      req.body.slug = slugify(req.body.title);
+    const product = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
     }
-    const updateProduct = await Product.findOneAndUpdate({ id }, req.body, {
-      new: true,
-    });
-    res.json(updateProduct);
+    res.json(product);
   } catch (error) {
-    throw new Error(error);
+    res.status(500).json({ error: error.message });
   }
 });
 

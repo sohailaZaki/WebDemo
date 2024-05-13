@@ -12,5 +12,6 @@ router.post('/removeproducts', productController.removeProduct);
 router.put('/product/rating',authMiddleware, productController.rating);
 router.get('/product/:id/ratings', productController.getProductRatings); 
 router.get('/product/:id/comments', productController.getCommentsByProductId);
-
+router.put('/:id/edit', productController.updateProduct);
 module.exports = router;
+    

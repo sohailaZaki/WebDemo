@@ -85,17 +85,7 @@ const Row2 = () => {
           flexGrow: 1,
         }}
       >
-        <Paper>
-          <Typography
-            color={theme.palette.secondary.main}
-            fontWeight={"bold"}
-            p={1.2}
-            variant="h6"
-          >
-            Recent Order
-          </Typography>
-        </Paper>
-
+  
         {recentOrders.map((item) => {
           return (
             <Paper

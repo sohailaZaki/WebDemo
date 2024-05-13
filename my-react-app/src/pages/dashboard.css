@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* Adjust to the height you prefer */
-    background-image: url('C:\Users\sara\Desktop\web project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\pinkCloud.jpeg'); /* Replace 'path/to/your/background/image.jpg' with the actual path to your image */
+    background-image: url('D:\grade 3\Semster 2\Web Engineering\project\Git Project\e-commerce-makeup-and-skincare-\my-react-app\src\assets\pinkCloud.jpeg'); /* Replace 'path/to/your/background/image.jpg' with the actual path to your image */
     background-size: cover;
     background-position: center;
  }

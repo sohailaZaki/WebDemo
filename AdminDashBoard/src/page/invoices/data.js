@@ -39,18 +39,16 @@ import'./invoices.css'
 //   ];
   
 export const columns = [
-  { field: "id", headerName: "Order ID",  headerClassName: "custom-header",},
-  { field: "customerName", headerName: "Customer Name", flex:1,  headerClassName: "custom-header",},
-  { field: "orderDate", headerName: "Order Date", headerClassName: "custom-header",},
-  { field: "status", headerName: "Status", headerClassName: "custom-header",},
-  { field: "paid", headerName: "Paid", headerClassName: "custom-header", },
-  { field: "productName", headerName: "Product Name(s)", flex: 1 , headerClassName: "custom-header",},
-  { field: "quantity", headerName: "Quantity",  headerClassName: "custom-header",},
-  { field: "unitPrice", headerName: "Unit Price", headerClassName: "custom-header", },
-  { field: "totalPrice", headerName: "Total Price",  headerClassName: "custom-header", },
-  { field: "shippingFee", headerName: "Shipping Fee",  headerClassName: "custom-header",},
-  { field: "tax", headerName: "Tax" , headerClassName: "custom-header",},
-  { field: "totalAmount", headerName: "Total Amount", headerClassName: "custom-header",},
+  { field: "_id", headerName: "Order ID", headerClassName: "custom-header" },
+  { field: "firstName", headerName: "Customer Name", headerClassName: "custom-header" },
+  { field: "email", headerName: "Customer email", flex: 1,headerClassName: "custom-header" },
+  { field: "phoneNumber", headerName: "PhoneNumber", flex: 1,headerClassName: "custom-header" },
+  { field: "address", headerName: "Address", flex: 1,headerClassName: "custom-header" },
+  { field: "governorate", headerName: "governorate",  headerClassName: "custom-header" },
+  { field: "location", headerName: "location", headerClassName: "custom-header" },
+  { field: "TotalPrice", headerName: "TotalPrice", headerClassName: "custom-header" },
+
+
 ];
   
   // export const rows = [
