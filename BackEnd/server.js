@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 const productRoute = require('./routes/ProductRoute');
 const authRoute = require('./routes/authRoute');
 const uploadRoute = require('./routes/UploadRoute'); // Import the new route file
+const checkRoute = require('./routes/CheckRoute');
 // const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -25,6 +26,8 @@ app.use('/images', express.static(path.join(__dirname, 'upload', 'images')));
 app.use('/', productRoute);
 app.use('/', authRoute);
 app.use('/upload', uploadRoute);
+app.use('/', checkRoute);
+
 // Error Handling Middleware
 app.use(errorHandler);
 app.use(notFound);
