@@ -1,19 +1,54 @@
-import React, { useState } from 'react';
-import NavbarComponent from './component/navbar/navbar';
-import Admin from './pages/admin/admin'
+import * as React from "react";
+import {
+  ThemeProvider,
+  createTheme,
+  styled,
+  useTheme,
+} from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Typography from "@mui/material/Typography";
+
+import TopBar from "./components/TopBar";
+import SideBar from "./components/SideBar";
+import { Outlet } from "react-router-dom";
 
 
-const App = () => {
-  
-  const [selectedCategory, setSelectedCategory] = useState('all');
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
 
-  const handleCategorySelect = (category) => {
-      setSelectedCategory(category);
-  }
-    return (
-        <div>
-        <NavbarComponent onCategorySelect={handleCategorySelect} />
-          <Admin/>
-        </div>
-)}
-export default App;
+
+
+
+export default function MiniDrawer() {
+ 
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+     < TopBar open={open} handleDrawerOpen={handleDrawerOpen} />
+       <SideBar open={open} handleDrawerClose={handleDrawerClose}/>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
+         <Outlet/>
+      </Box>
+    </Box>
+  );
+}
+

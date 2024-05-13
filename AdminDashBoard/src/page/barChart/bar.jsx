@@ -1,65 +1,109 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import { Box, Typography, useTheme } from "@mui/material";
+import axios from "axios";
 
-const data = [
+const data1 = [
   {
     "month": "Jan",
     "make-up": 84,
     "skin-care": 32,
-    "perfumes": 196
+   
   },
   {
     "month": "Feb",
     "make-up": 52,
     "skin-care": 140,
-    "perfumes": 28
+   
   },
   {
     "month": "Mar",
     "make-up": 188,
     "skin-care": 130,
-    "perfumes": 170
+   
   },
   {
     "month": "Apr",
     "make-up": 144,
     "skin-care": 168,
-    "perfumes": 56
+   
   },
   {
     "month": "May",
     "make-up": 8,
     "skin-care": 68,
-    "perfumes": 4
+   
   },
   {
     "month": "Jun",
     "make-up": 153,
     "skin-care": 191,
-    "perfumes": 52
+   
   },
   {
     "month": "Jul",
     "make-up": 169,
     "skin-care": 180,
-    "perfumes": 133
+    // "perfumes": 133
   },
   {
     "month": "Nov",
     "make-up": 169,
     "skin-care": 180,
-    "perfumes": 233
+    // "perfumes": 233
   }
 ];
 
 const Bar = ({ isDashbord = false }) => {
+  const [salesData, setSalesData] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // Fetch orders data from the backend
+      const response = await axios.get("/api/orders"); // Adjust the endpoint accordingly
+      const orders = response.data;
+
+      // Map orders to sales data by category and month
+      const categorySales = {};
+      orders.forEach((order) => {
+        const orderDate = new Date(order.orderDate);
+        const month = orderDate.getMonth(); // Get month index (0-11)
+        const year = orderDate.getFullYear();
+        const category = order.category; // Assuming you have a "category" property in the order object
+
+        // Initialize the category sales object if it doesn't exist
+        if (!categorySales[category]) {
+          categorySales[category] = Array(12).fill(0); // Initialize each month with 0 sales
+        }
+
+        // Accumulate the total price of the order in the corresponding month
+        categorySales[category][month] += order.totalAmount; // Assuming totalAmount represents the sales
+      });
+
+      // Format data for the bar chart
+      const formattedData = Object.keys(categorySales).map((category) => ({
+        category,
+        ...categorySales[category].map((sales, index) => ({
+          month: index + 1, // Add 1 to convert month index to month number (1-12)
+          sales,
+        })),
+      }));
+
+      // Set the formatted data to state
+      setSalesData(formattedData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <Box sx={{height: isDashbord ? "295px" : "75vh",width:isDashbord ?600: 900}}>
       <ResponsiveBar
-        data={data}
-        keys={['make-up', 'skin-care', 'perfumes']}
+        data={data1}
+        keys={['make-up', 'skin-care']}
         indexBy="month"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}

@@ -14,6 +14,7 @@ import Home from "./component/Home/Home";
 import Spage from "./component/spage.jsx/spage";
 import Register from "../src/Auth/Register";
 import Login from "../src/Auth/Login";
+import Dashboard from "./pages/dashboard";
 import { useAuth } from "../src/contexts/AuthContext";
 import AboutPage from "./component/Home/About";
 function App() {
@@ -28,6 +29,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <ScrollToTop />
+
         <NavbarComponent onCategorySelect={handleCategorySelect} />
         <Routes>
           <Route
@@ -66,7 +68,8 @@ function App() {
           <Route
           path="/Spage"
           element={<Spage banner="yourBanner" selectedCategory={selectedCategory} />}
-        />        
+        /> 
+<Route path="/Account" element={<Dashboard/>}/>     
         </Routes>
       </BrowserRouter>
     </div>

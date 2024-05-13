@@ -7,7 +7,7 @@ import { Delete } from '@mui/icons-material';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-
+import mainLogo from '../assets/main-logo.png'; // Import the logo image
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -30,31 +30,6 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -94,52 +69,11 @@ const TopBar = ({ open, handleDrawerOpen }) => {
         >
           <MenuIcon /> {/* Provide MenuIcon inside the IconButton */}
         </IconButton>
-        <Search sx={{color:"#e57373",border: '1px solid #e57373',borderRadius:3.5}}>
-          <SearchIconWrapper >
-            <SearchIcon sx={{color:"#e57373",}}/>
-          </SearchIconWrapper>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </Search>
-      
+        <img src={mainLogo} alt="Main Logo" style={{ marginRight: '10px' }} /> {/* Logo */}
+        
         <Box flexGrow={1} />
         <Stack direction="row">
-          <IconButton
-           
-            sx={{
-              '&:focus': {
-                outline: 'none', // Remove the focus ring
-              },
-              color: "#e57373",
-            }}
-          >
-            <NotificationsNoneOutlinedIcon />
-          </IconButton>
-          <IconButton
-           aria-controls="navigation-menu"
-           aria-haspopup="true"
-            color="inherit"
-            sx={{
-              '&:focus': {
-                outline: 'none', // Remove the focus ring
-              }, color: "#e57373",
-            }}
-          >
-            <SettingsOutlinedIcon />
-          </IconButton>
        
-          <IconButton
-            color="inherit"
-            sx={{
-                '&:focus': {
-                  outline: 'none', // Remove the focus ring
-                }, color: "#e57373",
-              }}
-          >
-            <PersonOutlineOutlinedIcon />
-          </IconButton>
         </Stack>
         {/* <Typography variant="h6" noWrap component="div">
                     Mini variant drawer

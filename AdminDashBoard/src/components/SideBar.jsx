@@ -14,7 +14,9 @@ import MuiDrawer from '@mui/material/Drawer';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 import { BarChartOutlined, CalendarMonthOutlined, CalendarTodayOutlined, ContactsOutlined, HelpOutlineOutlined, HomeOutlined, MapOutlined, PeopleAltOutlined, PeopleOutlined, PersonOutline, PieChartOutline, PieChartOutlineOutlined, ReceiptLongOutlined, TimelineOutlined } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -69,27 +71,24 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const Array1 = [
   { text: "Dashboard", icon: <HomeOutlined />, path: "/dashboard" },
   { text: "Users", icon: <PeopleOutlined />, path: "/team" },
+
   {
-    text: "Contacts Information",
-    icon: <ContactsOutlined />,
-    path: "/cont"
-   
-  },
-  {
-    text: "Invoices Balances",
+    text: "Orders",
     icon: <ReceiptLongOutlined />,
     path: "/invoices",
   },
 ];
 const Array2 = [
-  { text: "Add User", icon: <PersonAddAlt1OutlinedIcon />, path: "/form" },
-  { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/calendar" },
- 
-];
-const Array3 = [
+  // { text: "Calendar", icon: <CalendarTodayOutlined />, path: "/calendar" },
   { text: "Bar Chart", icon: <BarChartOutlined />, path: "/barChart" },
   { text: "Pie Chart", icon: <PieChartOutlineOutlined />, path: "/pieChart" },
+
+];
+const Array3 = [
   { text: "Line Chart", icon: <TimelineOutlined />, path: "/lineChart" },
+  {text:"Add Products" ,icon:<AddShoppingCartIcon/>,path:"/products"},
+  {text:"Edit on Products",icon:<ShoppingCartOutlinedIcon/>,path:"/listproducts"}
+ 
 ];
 const SiderBar=({open,handleDrawerClose})=>{
   const location =useLocation();
@@ -118,18 +117,13 @@ const SiderBar=({open,handleDrawerClose})=>{
 
       <Divider />
       <Box sx={{ backgroundColor: "White"  }}>
-        <Avatar sx={{ mx: "auto", height: open ? 88 : 44, width: open ? 88 : 44, my: 2, transition: "0.25s", }}
-          alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-
+       
         <Typography align='center' color="Black" sx={{
 
-          fontSize: open ? 20 : 0, transition: "0.25s"
+          fontSize: open ? 50 : 0, transition: "0.25s"
         }}
-        >Sondos</Typography>
-        <Typography align='center' color="Black" sx={{
-
-          fontSize: open ? 15 : 0, transition: "0.25s"
-        }}>Admin</Typography>
+        >ADMIN</Typography>
+      
 
          
       </Box>

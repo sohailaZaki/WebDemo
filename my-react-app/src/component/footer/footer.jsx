@@ -11,28 +11,6 @@ const Footer = () => {
 
     return (
         <div>
-            <section className="newsletter my-5" style={{ background: `url(${signUP}) no-repeat` }}>
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-8 py-5 my-5">
-              <div className="subscribe-header text-center pb-3">
-                <h3 className="section-title text-uppercase">Sign Up for our newsletter</h3>
-              </div>
-              <form id="form" className="d-flex flex-wrap gap-2">
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Your Email Addresss"
-                  className="form-control form-control-lg rounded-pill fs-6 py-3 px-4"
-                />
-                <button className="btn btn-dark btn-lg bg-dark text-white text-uppercase rounded-pill py-3 w-100">
-                  Sign Up
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="instagram my-5 py-5">
         <div className="container">
