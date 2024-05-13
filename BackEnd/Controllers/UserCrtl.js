@@ -73,6 +73,7 @@ const logIn = asyncHandler(async (req, res,next) => {
             //should go to home
             status: 'success',
             message: 'User logged in successfully',
+            token,
             user :{
                 _id:user._id, 
                 name:user.name,
@@ -222,6 +223,30 @@ const saveAddress = asyncHandler(async (req, res, next) => {
       throw new Error(error);
     }
   });
+   //update username
+  const updateUser = asyncHandler(async (req, res) => {
+    try {
+      const { _id } = req.user; // Get user ID from authenticated token
+      const { newUsername } = req.body; // Get new username from request body
+  
+      // Update username in the database and retrieve the updated user
+      const updatedUser = await User.findByIdAndUpdate(
+        _id,
+        { name: newUsername },
+        { new: true } // Return the updated document
+      );
+  
+      res.status(200).json(updatedUser); // Return the updated user object
+    } catch (error) {
+      console.error('Error updating username:', error);
+      res.status(500).json({ error: error.message }); // Return the actual error message
+    }
+  });
+  
+  
+  
+  
+
  module.exports = {
     signUp,
     logIn,
@@ -232,4 +257,6 @@ const saveAddress = asyncHandler(async (req, res, next) => {
     loginAdmin,
     getWishlist,
     saveAddress,
+    updateUser
+    
  }

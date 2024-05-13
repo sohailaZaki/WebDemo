@@ -15,6 +15,7 @@ import Home from "./component/Home/Home";
 import Spage from "./component/spage.jsx/spage";
 import Register from "../src/Auth/Register";
 import Login from "../src/Auth/Login";
+import Dashboard from "./pages/dashboard";
 import { useAuth } from "../src/contexts/AuthContext";
 
 function App() {
@@ -24,23 +25,27 @@ function App() {
       <BrowserRouter>
        
         <ScrollToTop />
-    
         <Routes>
-          <Route path="/Register" element={!isAuthenticated ? <Register /> : <Navigate to="/home" />} />
-          <Route path="/" element={!isAuthenticated ? <Login /> : <Navigate to="/home" />} />
-          <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/MakeUP" element={<Shopcategoery banner={Makeupbanner} category="MakeUP" />} />
-        <Route path="/SkinCare" element={<Shopcategoery banner={skinbanner} category="SkinCare" />} />
-        <Route path="/product" element={<Product />}>
-          <Route path=':productId' element={<Product />} />
-        </Route>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkOut" element={<CheckoutPage />} />
-        <Route path="/Spage" element={<Spage />} />
-      </Routes>
-      
-
+           <Route path="/Register" element={
+          !isAuthenticated ? <Register  /> :<Navigate to="/home" />} />
+          <Route path="/" element={
+            !isAuthenticated ? <Login /> : <Navigate to="/home" />} />
+          <Route path="/home" element={
+          isAuthenticated ?<Home /> :<Login/> } />
+          <Route path="/home" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/MakeUP" element={<Shopcategoery banner={Makeupbanner} category="MakeUP" />} />
+          <Route path="/SkinCare" element={<Shopcategoery banner={skinbanner} category="SkinCare" />} />
+          <Route path="/product" element={<Product />}>
+            <Route path=':productId' element={<Product />} />
+          </Route>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkOut" element={<CheckoutPage />} />
+          <Route path="/Spage" element={<Spage/>}/>
+          <Route path="/Account" element={<Dashboard/>}/>
+         
+          
+        </Routes>
       </BrowserRouter>
     </div>
   );
