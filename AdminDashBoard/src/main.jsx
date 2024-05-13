@@ -20,6 +20,8 @@ import BarChart from './page/barChart/BarChart';
 import Dashboard from './page/dashboard/Dashboard';
 // import Products from './page/products/Products';
 import Category from './page/category/Category';
+import Products from './page/products/Products';
+import Listproduct from './page/listproduct/listproduct';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MiniDrawer />}>
@@ -34,9 +36,9 @@ const router = createBrowserRouter(
       <Route path="pieChart" element={<PieChart />} />
       <Route path="lineChart" element={<LineChart />} />
       <Route path="category" element={<Category />} />
-
-      {/* <Route path='products' element={<Products />}/> */}
-      <Route path="*" element={<NotFound />} />
+      <Route path='products' element={<Products />}/>
+      <Route path="/listproducts" element={<Listproduct />} />
+     <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

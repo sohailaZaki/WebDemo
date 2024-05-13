@@ -5,6 +5,10 @@ const jwt =require("jsonwebtoken");
 const { generateToken } = require("../config/jwtToken");
 const { generateRefreshToken } = require("../config/refreshtoken");
 const validateMongoDbId = require("../Utils/validateMongoDbId");
+
+
+
+
 const signUp = asyncHandler(async (req, res,next) => { 
     try{
         const user = await User.findOne({email:req.body.email});
@@ -31,7 +35,7 @@ const signUp = asyncHandler(async (req, res,next) => {
         res.status(201).json({
             status: 'success',
             message: 'User created successfully',
-            token, 
+            token , 
             user :{
                 _id:newUser._id, 
                 name:newUser.name,
@@ -73,7 +77,9 @@ const logIn = asyncHandler(async (req, res,next) => {
             //should go to home
             status: 'success',
             message: 'User logged in successfully',
-            token,
+
+
+            token:token,
             user :{
                 _id:user._id, 
                 name:user.name,
@@ -223,6 +229,7 @@ const saveAddress = asyncHandler(async (req, res, next) => {
       throw new Error(error);
     }
   });
+
    //update username
   const updateUser = asyncHandler(async (req, res) => {
     try {
@@ -247,16 +254,53 @@ const saveAddress = asyncHandler(async (req, res, next) => {
   
   
 
+
+
+  // API endpoint to fetch all users
+  const alluser = asyncHandler(async (req, res) => {
+    try {
+      const users = await User.find({});
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching users', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+ 
+
+  // Get a single user
+
+const getaUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+
+  try {
+    const getaUser = await User.findById(id);
+    res.json({
+      getaUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
  module.exports = {
+
     signUp,
     logIn,
     handleRefreshToken,
     updatePassword,
-    // forgotPasswordToken,
     resetPassword,
     loginAdmin,
     getWishlist,
     saveAddress,
-    updateUser
+    updateUser,
     
- }
+
+
+    alluser,
+      getaUser,
+  };
+
+
+

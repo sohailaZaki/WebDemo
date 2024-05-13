@@ -133,62 +133,17 @@ const updateProduct = asyncHandler(async (req, res) => {
 //   }
 // });
 
-// const rating = asyncHandler(async (req, res) => {
-//   const { _id } = req.user;
-//   const { star, prodId, comment } = req.body;
-//   try {
-//     const product = await Product.findById(prodId);
-//     let alreadyRated = product.ratings.find(
-//       (userId) => userId.postedby.toString() === _id.toString()
-//     );
-//     if (alreadyRated) {
-//       const updateRating = await Product.updateOne(
-//         {
-//           ratings: { $elemMatch: alreadyRated },
-//         },
-//         {
-//           $set: { "ratings.$.star": star, "ratings.$.comment": comment },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//     } else {
-//       const rateProduct = await Product.findByIdAndUpdate(
-//         prodId,
-//         {
-//           $push: {
-//             ratings: {
-//               star: star,
-//               comment: comment,
-//               postedby: _id,
-//             },
-//           },
-//         },
-//         {
-//           new: true,
-//         }
-//       );
-//     }
-//     const getallratings = await Product.findById(prodId);
-//     let totalRating = getallratings.ratings.length;
-//     let ratingsum = getallratings.ratings
-//       .map((item) => item.star)
-//       .reduce((prev, curr) => prev + curr, 0);
-//     let actualRating = Math.round(ratingsum / totalRating);
-//     let finalproduct = await Product.findByIdAndUpdate(
-//       prodId,
-//       {
-//         totalrating: actualRating,
-//       },
-//       { new: true }
-//     );
-//     res.json(finalproduct);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// });
 
+exports.getaProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
+  try {
+    const findProduct = await Product.findById(id);
+    res.json(findProduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
 
 exports.getAllProducts = async (req, res) => {
     try {
@@ -233,6 +188,93 @@ exports.removeProduct = async (req, res) => {
       name: req.body.name
   })
 };
+exports.rating = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { star, prodId, comment } = req.body;
+  try {
+    const product = await Product.findById(prodId);
+    let alreadyRated = product.ratings.find(
+      (userId) => userId.postedby.toString() === _id.toString()
+    );
+    if (alreadyRated) {
+      const updateRating = await Product.updateOne(
+        {
+          ratings: { $elemMatch: alreadyRated },
+        },
+        {
+          $set: { "ratings.$.star": star, "ratings.$.comment": comment },
+        },
+        {
+          new: true,
+        }
+      );
+    } else {
+      const rateProduct = await Product.findByIdAndUpdate(
+        prodId,
+        {
+          $push: {
+            ratings: {
+              star: star,
+              comment: comment,
+              postedby: _id,
+            },
+          },
+        },
+        {
+          new: true,
+        }
+      );
+    }
+    const getallratings = await Product.findById(prodId);
+    let totalRating = getallratings.ratings.length;
+    let ratingsum = getallratings.ratings
+      .map((item) => item.star)
+      .reduce((prev, curr) => prev + curr, 0);
+    let actualRating = Math.round(ratingsum / totalRating);
+    let finalproduct = await Product.findByIdAndUpdate(
+      prodId,
+      {
+        totalrating: actualRating,
+      },
+      { new: true }
+    );
+    res.json(finalproduct);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+// productController.js
+exports.getProductRatings = async (req, res) => {
+  const productId = req.params.id;
+
+  try {
+      // Find the product by its ID
+      const product = await Product.findById(productId);
+
+      if (!product) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+
+      // Return the ratings of the product
+      res.status(200).json({ ratings: product.ratings });
+  } catch (error) {
+      // Handle errors
+      console.error('Error fetching product ratings:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+};
+exports.getCommentsByProductId = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id).populate('ratings.postedby');
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    res.json({ comments: product.ratings });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 // module.exports = {
 //   createProduct,

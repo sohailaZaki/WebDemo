@@ -1,7 +1,4 @@
-.bg-image-container {
-  position: relative;
-  overflow: hidden;
-}
+
 
 .bg-image-container .overlay {
   position: absolute;
@@ -12,6 +9,7 @@
   background-color: rgba(0, 0, 0, 0.114);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .bg-image-container:hover .overlay {
@@ -27,6 +25,7 @@
   color: #fff;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2; 
 }
 
 .bg-image-container:hover .overlay-content {
@@ -78,9 +77,13 @@
   background-color: rgba(104, 45, 71, 0.851);
   color: white;
   border: none;
-  z-index: 10;
+
   border-radius: 10px;
 width: auto;
+}
+.btn.buy-now-btn { 
+  position: relative;
+  z-index: 3;  /* Ensure the button appears above other elements */
 }
 #Productsbtn{
   margin-left: -62px;
@@ -88,7 +91,7 @@ width: auto;
   margin-top: 35px;
 }
 .hover-zoom:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .card {
@@ -120,7 +123,6 @@ background-color: red;
 }
 .bg-image-container img{
   padding-bottom: 50px;
-  width: 80%;
   margin-top:50px ;
 margin-left:28px ;
 }
@@ -156,4 +158,104 @@ margin-left:28px ;
 /* Add hover effect to zoom images */
 .hover-zoom:hover .card-img-top {
   transform: scale(1.05);
+}
+
+.bg-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-image-container .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 16, 124, 0.027);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px; /* Add rounded corners to overlay */
+}
+
+.bg-image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2; /* Ensure content appears above the overlay */
+}
+
+.bg-image-container:hover .overlay-content {
+  opacity: 1;
+}
+
+.overlay-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3; /* Ensure icons appear above the overlay */
+}
+
+.overlay-icon {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(223, 179, 193);
+  background-color: rgba(248, 170, 196, 0.31);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.overlay-icons :hover {
+  color: aliceblue;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn.buy-now-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 100%;
+  transform: translateX(-50%);
+  z-index: 3; /* Ensure button appears above the overlay */
+}
+
+#Productsbtn {
+  margin-left: -62px;
+  position: absolute;
+  margin-top: 35px;
+  z-index: 3; /* Ensure button appears above the overlay */
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.1);
+}
+.bg-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px; /* Add rounded corners */
+  margin: 20px; /* Add spacing between cards */
+  padding: 50px;
+  background-color: rgba(242, 197, 212, 0.196);
+  height: 740px; /* Set a fixed height for all card containers */
+  justify-content: center;
+  text-align: center;
+}
+
+.bg-image-container img {
+  width: 155px;
+ 
+  object-fit: cover; /* Ensure the image covers the entire container */
 }

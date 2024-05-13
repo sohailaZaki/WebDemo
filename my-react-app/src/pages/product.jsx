@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useParams } from "react-router-dom"; 
 import Productdisplay from "../component/productdisplay/productdisplay";
@@ -13,15 +13,17 @@ const Product = () => {
 
     const { all_product } = useContext(ShopContext);
 
-    const product = all_product.find((e) => e.id === Number(productId));
+    let product = all_product.find((e) => e.id === Number(productId)); ;
+    useEffect(() => {
 
+        product = all_product.find((e) => e.id === Number(productId));
+
+    } );
     return (
         <div>
-            <NavbarComponent /> 
-
+         
             <Productdisplay product={product} />
-            <Comment/>
-            
+
            <Footer />
             
         </div>
