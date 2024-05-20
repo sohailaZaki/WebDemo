@@ -10,10 +10,18 @@ exports.addOrder= async (req, res) => {
     if (check.length > 0) {
         let last_check_array = check.slice(-1);
         let last_check = last_check_array[0];
-        iid = last_check.iid + 1;
+        if (!isNaN(last_check.iid)) {
+            iid = last_check.iid + 1;
+        } else {
+            // Handle the case where the iid is NaN
+            // For example, set iid to the _id of the last_check document
+            iid = last_check._id;
+            // You might need to format the _id as per your requirements
+        }
     } else {
         iid = 1;
     }
+    
     //
     const neworder = new Check({
         iid:iid,

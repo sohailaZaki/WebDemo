@@ -249,7 +249,7 @@ margin-left:28px ;
   margin: 20px; /* Add spacing between cards */
   padding: 50px;
   background-color: rgba(242, 197, 212, 0.196);
-  height: 740px; /* Set a fixed height for all card containers */
+ 
   justify-content: center;
   text-align: center;
 }
